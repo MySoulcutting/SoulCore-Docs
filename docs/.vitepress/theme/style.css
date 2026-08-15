@@ -1,0 +1,358 @@
+/**
+ * SoulCore Docs - UI/UX Pro Max 设计系统主题
+ *
+ * 设计系统：Dark Mode (OLED) · 仅暗色
+ *  - 背景  #0F172A  (slate-900)
+ *  - 主色  #1E293B  (slate-800)
+ *  - 强调  #22C55E  (green-500) 代码绿
+ *  - 前景  #F8FAFC  (slate-50)
+ *  - 边框  #475569  (slate-600)
+ *  - 危险  #EF4444  (red-500)
+ * 字体：Inter（VitePress 自带打包）
+ */
+:root {
+  color-scheme: dark;
+
+  /* ---- 品牌色 ---- */
+  --vp-c-brand-1: #22c55e;
+  --vp-c-brand-2: #4ade80;
+  --vp-c-brand-3: #16a34a;
+  --vp-c-brand-soft: rgba(34, 197, 94, 0.16);
+
+  /* ---- 背景层级 ---- */
+  --vp-c-bg: #0f172a;
+  --vp-c-bg-alt: #0b1220;
+  --vp-c-bg-elv: #1e293b;
+  --vp-c-bg-soft: #16213a;
+
+  /* ---- 文字 ---- */
+  --vp-c-text-1: #f8fafc;
+  --vp-c-text-2: rgba(248, 250, 252, 0.72);
+  --vp-c-text-3: rgba(248, 250, 252, 0.45);
+
+  /* ---- 分割线与边框 ---- */
+  --vp-c-divider: rgba(71, 85, 105, 0.4);
+  --vp-c-border: #475569;
+  --vp-c-border-soft: rgba(71, 85, 105, 0.55);
+  --vp-c-gutter: #0b1220;
+
+  /* ---- 语义色 ---- */
+  --vp-c-danger-1: #ef4444;
+  --vp-c-danger-2: #f87171;
+  --vp-c-danger-3: #dc2626;
+  --vp-c-warning-1: #eab308;
+  --vp-c-warning-2: #facc15;
+  --vp-c-warning-3: #ca8a04;
+  --vp-c-info-1: #38bdf8;
+  --vp-c-info-2: #7dd3fc;
+  --vp-c-info-3: #0284c7;
+
+  /* ---- 字体 ---- */
+  --vp-font-family-base: 'Inter', 'Inter var experimental', 'Inter var',
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular,
+    'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* ---- 布局 ---- */
+  --vp-layout-max-width: 1440px;
+  --vp-nav-height: 64px;
+  --vp-sidebar-width: 280px;
+
+  /* ---- 圆角与阴影 ---- */
+  --vp-border-radius: 10px;
+  --vp-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --vp-shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* 保证即使主题系统未加 .dark 也保持暗色外观 */
+.dark {
+  color-scheme: dark;
+  --vp-c-bg: #0f172a;
+  --vp-c-bg-alt: #0b1220;
+  --vp-c-bg-elv: #1e293b;
+  --vp-c-bg-soft: #16213a;
+  --vp-c-text-1: #f8fafc;
+  --vp-c-text-2: rgba(248, 250, 252, 0.72);
+  --vp-c-text-3: rgba(248, 250, 252, 0.45);
+}
+
+/* =====================================================================
+ * 导航栏
+ * ===================================================================== */
+.VPNav {
+  border-bottom: 1px solid var(--vp-c-divider);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.VPNavBar.has-sidebar .content-body {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.VPNavBarTitle .title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* 导航链接 */
+.VPNavBarMenuLink,
+.VPNavBarMenuGroup .button {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.VPNavBarMenuLink:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--vp-c-brand-1);
+  border-bottom: 2px solid var(--vp-c-brand-1);
+}
+
+/* =====================================================================
+ * 侧边栏
+ * ===================================================================== */
+.VPSidebar {
+  background: var(--vp-c-bg-alt);
+  border-right: 1px solid var(--vp-c-divider);
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+  font-weight: 700;
+}
+
+.VPSidebarItem.level-1 .item .text {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.VPSidebarItem.level-1 .item:hover .text {
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebarItem.level-1.is-active > .item .text {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+.VPSidebarItem.level-1.is-active > .item {
+  background: var(--vp-c-brand-soft);
+  border-radius: 8px;
+}
+
+/* =====================================================================
+ * 首页 Hero
+ * ===================================================================== */
+.VPHero .name,
+.VPHero .text {
+  letter-spacing: -0.03em;
+}
+
+.VPHero .name {
+  background: linear-gradient(120deg, #4ade80, #22c55e 45%, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(34, 197, 94, 0.35);
+}
+
+.VPHero .tagline {
+  color: var(--vp-c-text-2);
+  max-width: 720px;
+}
+
+.VPHero .image-bg {
+  display: none;
+}
+
+/* Hero 图标（favicon）放大 */
+.VPHero .image-container .image {
+  filter: drop-shadow(0 0 24px rgba(34, 197, 94, 0.45));
+}
+
+/* =====================================================================
+ * 特性卡片
+ * ===================================================================== */
+.VPFeature {
+  border: 1px solid var(--vp-c-border-soft);
+  border-radius: var(--vp-border-radius);
+  background: var(--vp-c-bg-soft);
+  transition: border-color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.VPFeature:hover {
+  border-color: var(--vp-c-brand-3);
+  transform: translateY(-3px);
+  box-shadow: var(--vp-shadow-card-hover);
+}
+
+.VPFeature .icon {
+  background: var(--vp-c-brand-soft);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 10px;
+}
+
+.VPFeature .icon svg {
+  fill: none;
+  stroke: var(--vp-c-brand-1);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  width: 24px;
+  height: 24px;
+}
+
+.VPFeature .title {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.VPFeature .details {
+  color: var(--vp-c-text-2);
+  line-height: 1.65;
+}
+
+/* =====================================================================
+ * 文档内容
+ * ===================================================================== */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4 {
+  letter-spacing: -0.02em;
+}
+
+.vp-doc h2 {
+  border-top: none;
+  padding-top: 0;
+}
+
+.vp-doc h2::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1.1em;
+  margin-right: 10px;
+  vertical-align: -0.18em;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #4ade80, #22c55e);
+}
+
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 表格 */
+.vp-doc table {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc tr:nth-child(2n) {
+  background: rgba(30, 41, 59, 0.35);
+}
+
+/* 代码块 */
+.vp-doc div[class*='language-'] {
+  border: 1px solid var(--vp-c-border-soft);
+  border-radius: var(--vp-border-radius);
+  box-shadow: var(--vp-shadow-card);
+}
+
+.vp-doc code {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.875em;
+}
+
+/* 提示框（tip / warning / danger） */
+.custom-block {
+  border-radius: 8px;
+}
+
+.custom-block.danger {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--vp-c-danger-1);
+}
+
+/* =====================================================================
+ * 交互与无障碍
+ * ===================================================================== */
+/* 可见焦点环 */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 可点击元素光标 */
+.VPNavBarMenuLink,
+.VPSidebarItem a,
+.vp-doc a,
+button {
+  cursor: pointer;
+}
+
+/* 尊重系统减少动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =====================================================================
+ * 页脚
+ * ===================================================================== */
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-alt);
+}
+
+/* =====================================================================
+ * 滚动条（WebKit）
+ * ===================================================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-border);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-3);
+}

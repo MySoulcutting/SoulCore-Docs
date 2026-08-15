@@ -10,12 +10,19 @@ export default defineConfig({
   lang: 'zh-CN',
   base,
 
+  // UI/UX Pro Max 设计系统：Dark Mode (OLED) 仅暗色主题
+  // appearance: false 禁用切换按钮；暗色变量已在 theme/style.css 的 :root 中定义
+  appearance: false,
+
   head: [
-    ['link', { rel: 'icon', href: `${base}favicon.svg` }]
+    ['link', { rel: 'icon', href: `${base}favicon.svg` }],
+    ['meta', { name: 'theme-color', content: '#0F172A' }],
+    ['meta', { name: 'color-scheme', content: 'dark' }]
   ],
 
   themeConfig: {
     logo: '/favicon.svg',
+    siteTitle: 'SoulCore',
 
     nav: [
       { text: '首页', link: '/' },
@@ -64,7 +71,7 @@ export default defineConfig({
 
     // 社交链接（部署后替换为真实仓库地址）
     socialLinks: [
-      { icon: 'github', label: 'GitHub', link: 'https://github.com/your-org/SoulCore' }
+      { icon: 'github', label: 'GitHub', link: 'https://github.com/MySoulcutting/SoulCore' }
     ],
 
     footer: {
@@ -79,6 +86,15 @@ export default defineConfig({
 
     lastUpdated: {
       text: '最后更新'
-    }
+    },
+
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    },
+
+    returnToTopLabel: '返回顶部',
+    sidebarMenuLabel: '菜单',
+    langMenuLabel: '语言'
   }
 })

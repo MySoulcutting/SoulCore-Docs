@@ -17,22 +17,22 @@ hero:
       link: /guide/modules/item-images
 
 features:
-  - icon: ⚔️
+  - icon: { src: /icons/sword.svg, alt: 战斗反馈 }
     title: 战斗反馈
     details: 客户端实时采样生命变化，在实体颈部显示像素风伤害/治疗数字，不改变服务端玩法结果。
-  - icon: 🧟
+  - icon: { src: /icons/heart-pulse.svg, alt: 怪物血条 }
     title: 怪物血条
     details: 敌对生物头顶显示朝向摄像机的名称、橙红生命条与当前生命数值，自动隐藏原版名牌。
-  - icon: 🎒
+  - icon: { src: /icons/backpack.svg, alt: 拾取提示 }
     title: 拾取提示
     details: 拾取物品时右下角弹出图标、名称与数量的滑动通知，同屏最多五条，位置可自由拖动。
-  - icon: 🖼️
+  - icon: { src: /icons/image.svg, alt: 自定义物品图片 }
     title: 自定义物品图片
     details: Paper 下发匹配规则，客户端将物品替换为自定义图片，支持名称/Lore/正则/NBT 匹配与动画。
-  - icon: 🎨
+  - icon: { src: /icons/box.svg, alt: 3D 物品模型 }
     title: 3D 物品模型
     details: 内置 GeckoLib 支持，为物品配置 3D 模型、动画与发光层纹理。
-  - icon: 📡
+  - icon: { src: /icons/radio.svg, alt: 服务端效果 }
     title: 服务端效果
     details: 通过协议通道下发 HUD 文本/图片、Tooltip、粒子、屏幕叠加、相机效果与服务端按键。
 ---
