@@ -1,59 +1,17 @@
 # 自定义物品图片
 
-**模块状态**：服务端下发规则 + 客户端渲染 · 依赖：客户端 Mod + effects 协议通道
+SoulCore 最核心的功能：服务端通过匹配规则，把客户端物品替换为自定义图片。配置位于 `plugins/SoulCore/modules/icons.yml`。
 
-SoulCore 最核心的功能：让服务端通过匹配规则，把客户端物品替换为自定义图片。Paper 只下发匹配规则，**不发送图片文件**，每个玩家需要自行把图片放进自己的客户端目录。
+**模块状态**：服务端 · 依赖：客户端 Mod + effects 协议通道
 
 ## 工作原理
 
-```mermaid
-graph LR
-    A[服务端 icons.yml 规则] --> B[玩家进服时下发匹配规则]
-    C[客户端 resourcepacks/soulcore/ 图片] --> D[客户端匹配物品并渲染图片]
-    B --> D
-```
+- 服务端在 `plugins/SoulCore/modules/icons.yml` 配置物品匹配规则。
+- 玩家进服完成握手后，服务端通过协议通道把规则同步给兼容客户端。
+- Paper **只下发匹配规则，不发送图片文件**；每个玩家需要自行把图片放进自己的客户端目录。
+- 客户端根据规则匹配物品，用 `resourcepacks/soulcore/` 下的图片替换原版外观。
 
-1. 服务端在 `plugins/SoulCore/modules/icons.yml` 配置匹配规则。
-2. 玩家进服后，服务端通过协议通道把规则同步给兼容客户端。
-3. 客户端根据规则匹配物品，用 `resourcepacks/soulcore/` 下的图片替换原版外观。
-
-## 第一步：放置图片
-
-把图片放入每个客户端自己的目录：
-
-```text
-.minecraft/resourcepacks/soulcore/
-```
-
-支持子目录、任意扩展名、任意分辨率。例如：
-
-```text
-.minecraft/resourcepacks/soulcore/soul_blade.png
-.minecraft/resourcepacks/soulcore/weapons/fire_sword.png
-```
-
-仓库提供了可直接测试的示例：`examples/item-images/soul_blade.png` 与同名 `.mcmeta`，复制到上述目录即可。
-
-### 图片动画
-
-支持 Minecraft 原生动画元数据。在图片同目录放置同名 `.mcmeta` 文件：
-
-```json
-{
-  "animation": {
-    "frametime": 2,
-    "frames": [0, {"index": 1, "time": 4}],
-    "interpolate": true
-  }
-}
-```
-
-- 图片高度应包含所有垂直排列的动画帧。
-- Minecraft 会按原生规则处理帧时长、帧顺序和插值。
-
-## 第二步：配置匹配规则
-
-编辑服务端 `plugins/SoulCore/modules/icons.yml`，在 `icons:` 节点下添加规则：
+## 最简配置
 
 ```yaml
 icons:
@@ -64,12 +22,6 @@ icons:
 ```
 
 `diamond_sword` 会自动转换为 `minecraft:diamond_sword`。
-
-::: warning 注意
-- 每条规则的 `match` 中**至少需要一种**匹配方式。
-- 填写多个匹配条件时，**所有条件都必须满足**。
-- 一条规则只有一个 `icons:` 根节点，多条规则都放在它下面。
-:::
 
 ## 匹配方式
 
@@ -159,6 +111,34 @@ icons:
 | `scale` | `1.0` | 图片显示缩放，范围 `0.1` 至 `4.0` |
 | `handheld` | `false` | 是否使用手持物品变换 |
 
+## 客户端图片
+
+把规则引用的图片放入每个客户端自己的目录：
+
+```text
+.minecraft/resourcepacks/soulcore/
+```
+
+- 支持子目录、任意扩展名、任意分辨率。
+- 仓库提供了可直接测试的示例：`examples/item-images/soul_blade.png` 与同名 `.mcmeta`，复制到上述目录即可。
+
+### 图片动画
+
+支持 Minecraft 原生动画元数据。在图片同目录放置同名 `.mcmeta` 文件：
+
+```json
+{
+  "animation": {
+    "frametime": 2,
+    "frames": [0, {"index": 1, "time": 4}],
+    "interpolate": true
+  }
+}
+```
+
+- 图片高度应包含所有垂直排列的动画帧。
+- Minecraft 会按原生规则处理帧时长、帧顺序和插值。
+
 ## GeckoLib 3D 物品模型
 
 在同一个 `icons:` 节点下添加规则。`texture` 仍然必填：它用于匹配规则的资源就绪检查，也是模型加载失败时的回退图片。
@@ -191,57 +171,14 @@ items/soul_blade_glow.png
 - `model`、`animations` 与 `glow-texture` 都必须使用 `/` 分隔的规范相对路径。
 - GeckoLib 已随 SoulCore Fabric Mod 内嵌。
 
-## 应用配置
+## 限制
 
-配置完成后执行：
+- 每条规则的 `match` 中**至少需要一种**匹配方式。
+- 填写多个匹配条件时，**所有条件都必须满足**。
+- 一条规则只有一个 `icons:` 根节点，多条规则都放在它下面。
+- 修改配置后执行 `/soulcore reload`（权限 `soulcore.reload`，默认 OP）生效。
 
-```text
-/soulcore reload
-```
-
-所需权限：`soulcore.reload`（默认 OP）。
-
-## 完整示例
-
-```yaml
-icons:
-  # 最简规则：所有钻石剑都显示 soul_blade.png
-  soul_blade:
-    match:
-      material: diamond_sword
-    texture: soul_blade.png
-
-  # 精确匹配名称与 Lore
-  legendary_blade:
-    priority: 100
-    match:
-      material: diamond_sword
-      name: "Soul Blade"
-      lore: "Legendary"
-    texture: weapons/legendary_blade.png
-    handheld: true
-
-  # 正则匹配强化武器
-  upgraded_blade:
-    priority: 90
-    match:
-      material: minecraft:diamond_sword
-      name-regex: '^Soul Blade \+[0-9]+$'
-      lore-regex: '^(Legendary|Mythic)$'
-    texture: weapons/upgraded_blade.png
-    handheld: true
-```
-
-## 常见问题
-
-| 现象 | 解决 |
-|---|---|
-| 图片不生效 | 确认图片已放入客户端目录、文件名与 `texture` 一致、服务端已重载 |
-| 优先级不生效 | `priority` 数值越大优先级越高；规则之间匹配条件重叠时检查优先级 |
-| 3D 模型不显示 | 确认 `.geo.json` 路径正确、客户端目录存在模型与贴图、服务端已重载 |
-| 动画不动 | 确认 `.png.mcmeta` 与图片同名且放在同目录，动画格式正确 |
-
-## 下一步
+## 相关
 
 - [装备外观](/guide/modules/equipment-appearance) —— 相似的匹配规则，作用于装备外观
-- [HUD 文本与图片](/guide/modules/hud) —— 服务端下发的屏幕元素
+- [HUD 文本与图片](/guide/modules/hud) · [Tooltip 增强](/guide/modules/tooltip)
