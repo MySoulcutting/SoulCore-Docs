@@ -57,5 +57,5 @@ SoulCore 是一个多模块项目，包含 **SoulCore-Fabirc**（Fabric 客户�
 - [快速开始](/guide/getting-started) —— 3 分钟完成客户端与服务端安装
 - [自定义物品图片](/guide/modules/item-images) —— 最常用的进阶玩法
 - [客户端模块](/guide/modules/settings) —— 战斗文字、怪物血条、拾取提示、总控设置
-- [服务端模块](/guide/modules/hud) —— HUD、Tooltip、粒子、按键与装备外观
+- [服务端模块](/guide/modules/item-images) —— 物品图片、HUD、Tooltip、粒子、按键与装备外观
 - [命令与权限](/guide/commands) —— 完整命令参考

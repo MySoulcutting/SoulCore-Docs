@@ -40,13 +40,13 @@ export default defineConfig({
             { text: '总控设置', link: '/guide/modules/settings' },
             { text: '战斗文字', link: '/guide/modules/combat-text' },
             { text: '怪物血条', link: '/guide/modules/monster-health' },
-            { text: '拾取提示', link: '/guide/modules/pickup-hud' },
-            { text: '自定义物品图片', link: '/guide/modules/item-images' }
+            { text: '拾取提示', link: '/guide/modules/pickup-hud' }
           ]
         },
         {
           text: '服务端模块',
           items: [
+            { text: '自定义物品图片', link: '/guide/modules/item-images' },
             { text: 'HUD 文本与图片', link: '/guide/modules/hud' },
             { text: 'Tooltip 增强', link: '/guide/modules/tooltip' },
             { text: '粒子效果', link: '/guide/modules/particles' },
