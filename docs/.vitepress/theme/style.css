@@ -1,51 +1,68 @@
 /**
- * SoulCore Docs - UI/UX Pro Max 设计系统主题
+ * SoulCore Docs - UI/UX Pro Max 设计系统主题（浅色 + 暗色双模式）
  *
- * 设计系统：Dark Mode (OLED) · 仅暗色
- *  - 背景  #0F172A  (slate-900)
- *  - 主色  #1E293B  (slate-800)
- *  - 强调  #22C55E  (green-500) 代码绿
- *  - 前景  #F8FAFC  (slate-50)
- *  - 边框  #475569  (slate-600)
- *  - 危险  #EF4444  (red-500)
- * 字体：Inter（VitePress 自带打包）
+ * 浅色模式（参考 Knowledge Base / Documentation 配色）：
+ *  - 背景 #F8FAFC · 前景 #1E293B · 链接蓝 #2563EB · 代码块 #F6F8FA
+ * 暗色模式（参考 Developer Tool / IDE 配色）：
+ *  - 背景 #0F172A · 前景 #F8FAFC · 亮蓝 #60A5FA · 代码块 #1B2336
  */
-:root {
-  color-scheme: dark;
 
-  /* ---- 品牌色 ---- */
-  --vp-c-brand-1: #22c55e;
-  --vp-c-brand-2: #4ade80;
-  --vp-c-brand-3: #16a34a;
-  --vp-c-brand-soft: rgba(34, 197, 94, 0.16);
+/* =====================================================================
+ * 浅色模式（默认）
+ * ===================================================================== */
+:root {
+  color-scheme: light;
+
+  /* ---- 品牌色（文档链接蓝） ---- */
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #1d4ed8;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.1);
 
   /* ---- 背景层级 ---- */
-  --vp-c-bg: #0f172a;
-  --vp-c-bg-alt: #0b1220;
-  --vp-c-bg-elv: #1e293b;
-  --vp-c-bg-soft: #16213a;
+  --vp-c-bg: #f8fafc;
+  --vp-c-bg-alt: #f1f5f9;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #eef2f6;
 
   /* ---- 文字 ---- */
-  --vp-c-text-1: #f8fafc;
-  --vp-c-text-2: rgba(248, 250, 252, 0.72);
-  --vp-c-text-3: rgba(248, 250, 252, 0.45);
+  --vp-c-text-1: #1e293b;
+  --vp-c-text-2: rgba(30, 41, 59, 0.75);
+  --vp-c-text-3: rgba(30, 41, 59, 0.45);
 
   /* ---- 分割线与边框 ---- */
-  --vp-c-divider: rgba(71, 85, 105, 0.4);
-  --vp-c-border: #475569;
-  --vp-c-border-soft: rgba(71, 85, 105, 0.55);
-  --vp-c-gutter: #0b1220;
+  --vp-c-divider: #e2e8f0;
+  --vp-c-border: #cbd5e1;
+  --vp-c-border-soft: #e2e8f0;
+  --vp-c-gutter: #f1f5f9;
 
   /* ---- 语义色 ---- */
-  --vp-c-danger-1: #ef4444;
-  --vp-c-danger-2: #f87171;
-  --vp-c-danger-3: #dc2626;
-  --vp-c-warning-1: #eab308;
-  --vp-c-warning-2: #facc15;
-  --vp-c-warning-3: #ca8a04;
-  --vp-c-info-1: #38bdf8;
-  --vp-c-info-2: #7dd3fc;
-  --vp-c-info-3: #0284c7;
+  --vp-c-danger-1: #dc2626;
+  --vp-c-danger-2: #ef4444;
+  --vp-c-danger-3: #b91c1c;
+  --vp-c-warning-1: #d97706;
+  --vp-c-warning-2: #f59e0b;
+  --vp-c-warning-3: #b45309;
+  --vp-c-info-1: #0284c7;
+  --vp-c-info-2: #0ea5e9;
+  --vp-c-info-3: #0369a1;
+
+  /* ---- 代码块（GitHub 浅色风格，背景与页面明确区分） ---- */
+  --vp-code-block-bg: #f6f8fa;
+  --vp-code-block-color: #24292f;
+  --vp-code-line-number-color: rgba(30, 41, 59, 0.4);
+  --vp-code-copy-code-bg: #e8edf3;
+  --vp-code-copy-code-hover-bg: #dde4ec;
+  --vp-code-copy-code-active-text: rgba(30, 41, 59, 0.7);
+  --vp-code-tab-text-color: rgba(30, 41, 59, 0.6);
+  --vp-code-tab-active-text-color: #1e293b;
+  --vp-code-tab-hover-text-color: rgba(30, 41, 59, 0.85);
+  --vp-code-tab-divider: #d7dee6;
+  --vp-code-lang-color: rgba(30, 41, 59, 0.5);
+  --vp-code-highlight-color: rgba(37, 99, 235, 0.08);
+  --vp-code-link-color: #2563eb;
+  --vp-code-inline-bg: #eef2f6;
+  --vp-code-inline-color: #be123c;
 
   /* ---- 字体 ---- */
   --vp-font-family-base: 'Inter', 'Inter var experimental', 'Inter var',
@@ -61,28 +78,78 @@
 
   /* ---- 圆角与阴影 ---- */
   --vp-border-radius: 10px;
-  --vp-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35);
-  --vp-shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-/* 保证即使主题系统未加 .dark 也保持暗色外观 */
-.dark {
-  color-scheme: dark;
-  --vp-c-bg: #0f172a;
-  --vp-c-bg-alt: #0b1220;
-  --vp-c-bg-elv: #1e293b;
-  --vp-c-bg-soft: #16213a;
-  --vp-c-text-1: #f8fafc;
-  --vp-c-text-2: rgba(248, 250, 252, 0.72);
-  --vp-c-text-3: rgba(248, 250, 252, 0.45);
+  --vp-shadow-card: 0 2px 8px rgba(15, 23, 42, 0.08);
+  --vp-shadow-card-hover: 0 8px 24px rgba(15, 23, 42, 0.12);
 }
 
 /* =====================================================================
- * 导航栏
+ * 暗色模式（OLED，代码块背景提亮）
+ * ===================================================================== */
+.dark {
+  color-scheme: dark;
+
+  /* ---- 品牌色（暗色下的亮蓝，对比度达标） ---- */
+  --vp-c-brand-1: #60a5fa;
+  --vp-c-brand-2: #93c5fd;
+  --vp-c-brand-3: #3b82f6;
+  --vp-c-brand-soft: rgba(96, 165, 250, 0.15);
+
+  /* ---- 背景层级 ---- */
+  --vp-c-bg: #0f172a;
+  --vp-c-bg-alt: #0b1220;
+  --vp-c-bg-elv: #1e293b;
+  --vp-c-bg-soft: #1b2336;
+
+  /* ---- 文字 ---- */
+  --vp-c-text-1: #f8fafc;
+  --vp-c-text-2: rgba(248, 250, 252, 0.75);
+  --vp-c-text-3: rgba(248, 250, 252, 0.45);
+
+  /* ---- 分割线与边框 ---- */
+  --vp-c-divider: rgba(71, 85, 105, 0.45);
+  --vp-c-border: #475569;
+  --vp-c-border-soft: rgba(71, 85, 105, 0.6);
+  --vp-c-gutter: #0b1220;
+
+  /* ---- 语义色 ---- */
+  --vp-c-danger-1: #ef4444;
+  --vp-c-danger-2: #f87171;
+  --vp-c-danger-3: #dc2626;
+  --vp-c-warning-1: #f59e0b;
+  --vp-c-warning-2: #fbbf24;
+  --vp-c-warning-3: #d97706;
+  --vp-c-info-1: #38bdf8;
+  --vp-c-info-2: #7dd3fc;
+  --vp-c-info-3: #0284c7;
+
+  /* ---- 代码块（深色底 + 高对比文字，明显亮于页面背景） ---- */
+  --vp-code-block-bg: #1b2336;
+  --vp-code-block-color: #e2e8f0;
+  --vp-code-line-number-color: rgba(226, 232, 240, 0.4);
+  --vp-code-copy-code-bg: #253049;
+  --vp-code-copy-code-hover-bg: #2e3a55;
+  --vp-code-copy-code-active-text: rgba(248, 250, 252, 0.7);
+  --vp-code-tab-text-color: rgba(226, 232, 240, 0.6);
+  --vp-code-tab-active-text-color: #f8fafc;
+  --vp-code-tab-hover-text-color: rgba(248, 250, 252, 0.85);
+  --vp-code-tab-divider: #334155;
+  --vp-code-lang-color: rgba(226, 232, 240, 0.5);
+  --vp-code-highlight-color: rgba(96, 165, 250, 0.12);
+  --vp-code-link-color: #60a5fa;
+  --vp-code-inline-bg: #1e293b;
+  --vp-code-inline-color: #f87171;
+
+  /* ---- 阴影 ---- */
+  --vp-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --vp-shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.55);
+}
+
+/* =====================================================================
+ * 导航栏（双模式自适应）
  * ===================================================================== */
 .VPNav {
   border-bottom: 1px solid var(--vp-c-divider);
-  background: rgba(15, 23, 42, 0.85);
+  background: color-mix(in srgb, var(--vp-c-bg) 85%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -96,7 +163,6 @@
   letter-spacing: -0.02em;
 }
 
-/* 导航链接 */
 .VPNavBarMenuLink,
 .VPNavBarMenuGroup .button {
   font-weight: 500;
@@ -155,12 +221,20 @@
   letter-spacing: -0.03em;
 }
 
+/* 渐变标题：浅色用深蓝→青，暗色用亮绿→亮蓝 */
 .VPHero .name {
-  background: linear-gradient(120deg, #4ade80, #22c55e 45%, #38bdf8);
+  background: linear-gradient(120deg, #1d4ed8, #2563eb 45%, #0891b2);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 30px rgba(34, 197, 94, 0.35);
+}
+
+.dark .VPHero .name {
+  background: linear-gradient(120deg, #4ade80, #60a5fa 55%, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
 }
 
 .VPHero .tagline {
@@ -172,9 +246,12 @@
   display: none;
 }
 
-/* Hero 图标（favicon）放大 */
 .VPHero .image-container .image {
-  filter: drop-shadow(0 0 24px rgba(34, 197, 94, 0.45));
+  filter: drop-shadow(0 0 24px rgba(37, 99, 235, 0.25));
+}
+
+.dark .VPHero .image-container .image {
+  filter: drop-shadow(0 0 24px rgba(96, 165, 250, 0.4));
 }
 
 /* =====================================================================
@@ -183,7 +260,7 @@
 .VPFeature {
   border: 1px solid var(--vp-c-border-soft);
   border-radius: var(--vp-border-radius);
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg-elv);
   transition: border-color 0.25s ease, transform 0.25s ease,
     box-shadow 0.25s ease;
 }
@@ -196,7 +273,7 @@
 
 .VPFeature .icon {
   background: var(--vp-c-brand-soft);
-  border: 1px solid rgba(34, 197, 94, 0.25);
+  border: 1px solid var(--vp-c-brand-soft);
   border-radius: 10px;
 }
 
@@ -243,7 +320,7 @@
   margin-right: 10px;
   vertical-align: -0.18em;
   border-radius: 2px;
-  background: linear-gradient(180deg, #4ade80, #22c55e);
+  background: var(--vp-c-brand-1);
 }
 
 .vp-doc a {
@@ -272,18 +349,30 @@
 }
 
 .vp-doc tr:nth-child(2n) {
-  background: rgba(30, 41, 59, 0.35);
+  background: var(--vp-c-bg-soft);
 }
 
-/* 代码块 */
+/* =====================================================================
+ * 代码块（关键：与页面背景明确区分 + 清晰边框）
+ * ===================================================================== */
 .vp-doc div[class*='language-'] {
   border: 1px solid var(--vp-c-border-soft);
   border-radius: var(--vp-border-radius);
   box-shadow: var(--vp-shadow-card);
+  background: var(--vp-code-block-bg);
 }
 
-.vp-doc code {
-  font-family: var(--vp-font-family-mono);
+.vp-doc div[class*='language-'] code {
+  color: var(--vp-code-block-color);
+  background: transparent;
+}
+
+/* 行内代码 */
+.vp-doc :not(pre) > code {
+  background: var(--vp-code-inline-bg);
+  color: var(--vp-code-inline-color);
+  padding: 0.15em 0.4em;
+  border-radius: 5px;
   font-size: 0.875em;
 }
 
@@ -293,14 +382,17 @@
 }
 
 .custom-block.danger {
-  background: rgba(239, 68, 68, 0.1);
+  background: color-mix(in srgb, var(--vp-c-danger-1) 8%, transparent);
   border-color: var(--vp-c-danger-1);
+}
+
+.custom-block.tip {
+  background: color-mix(in srgb, var(--vp-c-brand-1) 8%, transparent);
 }
 
 /* =====================================================================
  * 交互与无障碍
  * ===================================================================== */
-/* 可见焦点环 */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
@@ -309,7 +401,6 @@ input:focus-visible {
   border-radius: 4px;
 }
 
-/* 可点击元素光标 */
 .VPNavBarMenuLink,
 .VPSidebarItem a,
 .vp-doc a,
@@ -317,7 +408,6 @@ button {
   cursor: pointer;
 }
 
-/* 尊重系统减少动效偏好 */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

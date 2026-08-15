@@ -10,9 +10,8 @@ export default defineConfig({
   lang: 'zh-CN',
   base,
 
-  // UI/UX Pro Max 设计系统：Dark Mode (OLED) 仅暗色主题
-  // appearance: false 禁用切换按钮；暗色变量已在 theme/style.css 的 :root 中定义
-  appearance: false,
+  // UI/UX Pro Max 设计系统：浅色 + 暗色双模式，跟随系统并可在导航栏手动切换
+  appearance: true,
 
   head: [
     ['link', { rel: 'icon', href: `${base}favicon.svg` }],
@@ -93,6 +92,9 @@ export default defineConfig({
       next: '下一页'
     },
 
+    darkModeSwitchLabel: '外观',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到暗色模式',
     returnToTopLabel: '返回顶部',
     sidebarMenuLabel: '菜单',
     langMenuLabel: '语言'
