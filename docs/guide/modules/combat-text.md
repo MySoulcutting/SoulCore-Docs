@@ -42,7 +42,7 @@
 
 禁用期间会继续更新生命值采样基线；重新开启时不会补发禁用期间的旧变化。
 
-配置持久化在 `config/soulcore-client/combat-text.properties`：
+配置持久化在 `.minecraft/config/soulcore/combat-text.properties`：
 
 ```properties
 damageEnabled=true

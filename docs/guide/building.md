@@ -3,65 +3,93 @@
 ## 环境要求
 
 - Java `21+`
-- Gradle（项目自带 Wrapper，无需手动安装）
+- 项目自带的 Gradle Wrapper，无需单独安装 Gradle
+- 首次构建需要联网下载 Gradle、Minecraft、Fabric、ModernUI 和 GeckoLib 依赖
 
-## 本地构建
+项目使用 Mojang official mappings。构建包含 Fabric、Paper、Protocol 与 `modernui-port`，不要只从单个子模块的旧输出判断完整发布是否成功。
 
-使用项目自带的 Gradle Wrapper：
+## 本地完整构建
+
+macOS / Linux：
 
 ```bash
-./gradlew clean build
+./gradlew clean build --stacktrace
 ```
 
 Windows：
 
 ```powershell
-.\gradlew.bat clean build
+.\gradlew.bat clean build --stacktrace
 ```
 
-构建产物：
+根项目把五个可发布产物汇总到 `build/libs/`：
 
 ```text
-fabric-mod/build/libs/SoulCore-Fabirc-<version>.jar
-paper-plugin/build/libs/SoulCore-Plugin-<version>.jar
-protocol/build/libs/protocol-<version>.jar
+build/libs/SoulCore-Fabirc-<version>.jar
+build/libs/SoulCore-Plugin-<version>.jar
+build/libs/protocol-<version>.jar
+build/libs/SoulCore-Fonts-<version>.zip
+build/libs/SoulCore-Color-Emoji-<version>.zip
 ```
 
-### 只构建指定模块
+::: tip 文件名说明
+本地 Protocol 文件名为 `protocol-<version>.jar`；发布工作流上传前会复制为 `SoulCore-Protocol-<version>.jar`。
+:::
 
-只构建 Fabric Mod：
+### 只构建指定内容
 
 ```bash
+# Fabric Mod
 ./gradlew :fabric-mod:build
-```
 
-只构建 Paper 插件：
-
-```bash
+# Paper 插件
 ./gradlew :paper-plugin:build
+
+# Protocol
+./gradlew :protocol:build
+
+# 字体包与 Emoji 资源包
+./gradlew :modernui-port:fontBundle :modernui-port:emojiResourcePack
 ```
+
+## 构建门禁
+
+完整 `build` 会运行模块测试和 JAR/资源包内容检查，包括：
+
+- Fabric remap JAR 的 metadata、入口、Mixin、嵌套 Protocol、GeckoLib 与 ModernUI 端口；
+- Paper JAR 的默认配置文件；
+- 字体包目录、字体许可与摘要；
+- Emoji 资源包的 `pack.mcmeta`、数据和图片清单；
+- Protocol 编解码及各客户端模块的纯逻辑/源码回归测试。
+
+构建通过证明编译、测试和打包满足门禁，不等同于游戏内渲染已经验证。
 
 ## GitHub Actions
 
-仓库在以下情况自动执行完整构建：
+`Build` 工作流在以下情况执行 `./gradlew clean build --stacktrace`：
 
-- 推送到 `master`
-- 创建或更新 Pull Request
-- 手动运行工作流
+- 推送到 `master`；
+- 创建或更新 Pull Request；
+- 手动运行工作流。
 
-构建成功后，可在对应 Actions 运行页面下载 Fabric、Paper 和 Protocol 三个 Artifact。
+成功后上传四组 Actions Artifact：
+
+- `SoulCore-Fabirc`
+- `SoulCore-Plugin`
+- `SoulCore-Protocol`
+- `SoulCore-Font-Packs`（字体与 Emoji 两个 ZIP）
 
 ## 发布 Release
 
-推送与 `gradle.properties` 中 `mod_version` 一致的 `v*` 标签时，GitHub Actions 会自动构建并创建 Release：
+推送与 `gradle.properties` 中 `mod_version` 完全一致的 `v*` 标签时，`Release` 工作流会重新执行完整冷构建并创建 GitHub Release。格式示例（把 `X.Y.Z` 替换为尚未发布的 `mod_version`）：
 
 ```bash
-git tag v1.2.2
-git push origin v1.2.2
+git tag vX.Y.Z
+git push origin vX.Y.Z
 ```
 
 ::: warning 版本一致性
-标签版本必须与 `gradle.properties` 中的 `mod_version` 一致，否则发布任务会拒绝执行。
+标签 `v` 后的版本必须与 `mod_version` 一致，否则发布任务会拒绝执行。`v1.4.0` 已经存在，不要照示例重建或覆盖已有标签；如需新发布，应先提升 `mod_version`。
 :::
 
 Release 自动包含：
@@ -70,35 +98,42 @@ Release 自动包含：
 SoulCore-Fabirc-<version>.jar
 SoulCore-Plugin-<version>.jar
 SoulCore-Protocol-<version>.jar
+SoulCore-Fonts-<version>.zip
+SoulCore-Color-Emoji-<version>.zip
 ```
 
-## 版本信息
+## 当前版本信息
 
-当前版本信息见根目录 `gradle.properties`：
+来源为根目录 `gradle.properties`：
 
 | 属性 | 当前值 |
 |---|---|
-| `mod_version` | `1.2.2` |
+| `mod_version` | `1.4.0` |
 | `minecraft_version` | `1.21.11` |
 | `loader_version` | `0.19.3` |
+| `loom_version` | `1.17.17` |
 | `fabric_api_version` | `0.141.6+1.21.11` |
 | `geckolib_version` | `5.4.5` |
+| `modernui_core_version` | `3.13.0` |
+| `arc3d_version` | `2026.2.0` |
 
 ## 客户端功能验证
 
 ::: warning 注意
-自动构建**不会**启动 Minecraft 客户端。涉及渲染、HUD 和动态纹理的功能需要在游戏内手动验证。
+自动构建不会进入 Minecraft 世界或服务器。渲染、鼠标交互、资源重载和服务端联动仍需游戏内验证。
 :::
 
-验证清单：
+发布前至少检查：
 
-- 战斗文字：攻击生物，观察颈部附近的伤害数字
-- 怪物血条：接近敌对生物，观察头顶血条与数值
-- 拾取提示：拾取物品，观察右下角通知
-- 物品图片：配置规则后检查自定义图片显示
-- 3D 模型：配置 GeckoLib 模型后检查模型渲染
+- 战斗文字、怪物血条名称规则和拾取 HUD；
+- 物品图片、动画、独立 GUI 图标、手持/掉落 3D 模型；
+- 平滑字体切换、字体回退、字符图标与可选 Emoji；
+- CustomQuest 对话的鼠标/键盘操作；
+- CustomQuest 导航的光柱、圆环、标签与生命周期清理；
+- 任务追踪 HUD 的滚动、收起、布局持久化和导航按钮。
 
 ## 下一步
 
+- [安装](/guide/installation) —— 核对五种发布文件的用途
 - [FAQ](/faq) —— 常见问题
 - [命令与权限](/guide/commands) —— 命令参考

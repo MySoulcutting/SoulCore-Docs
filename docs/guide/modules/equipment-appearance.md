@@ -32,16 +32,27 @@
 | `match.name-regex` | 完整物品名称正则匹配 |
 | `match.lore-regex` | 任意一行 Lore 正则匹配 |
 | `match.nbt` | NBT 条件（同物品图片，支持嵌套路径与列表索引） |
-| `texture` | 客户端 `resourcepacks/soulcore/` 下的外观纹理路径 |
-| `model` | 可选：GeckoLib `.geo.json` 模型 |
+| `texture` | 客户端 `resourcepacks/soulcore/` 下的外观纹理路径；也可填写路径列表 |
+| `model` | 可选：GeckoLib 可解析的 `.json` 模型，不强制使用 `.geo.json` 文件名 |
 | `animations` | 可选：GeckoLib `.animation.json` 动画 |
 | `glow-texture` | 可选：发光层 PNG |
+
+`texture` 可以是单一路径，也可以按“基础纹理、overlay”顺序填写最多两个路径：
+
+```yaml
+texture:
+  - equipment/legendary_blade.png
+  - equipment/legendary_blade_overlay.png
+```
+
+第二项会作为 overlay 层；不需要 overlay 时只填写第一项。
 
 ## 匹配规则
 
 - 每条规则的 `match` 中至少需要一种匹配方式。
 - 填写多个匹配条件时，所有条件都必须满足。
-- 外观纹理放在客户端 `resourcepacks/soulcore/` 下（同物品图片目录）。
+- 外观纹理、模型与动画放在客户端 `resourcepacks/soulcore/` 下，与物品图片共用内置的 `SoulCore Resources` 资源包。
+- `model` 不接受 Blockbench `.bbmodel` 工程文件；请先导出为 GeckoLib 可解析的 JSON。
 
 ## 限制
 

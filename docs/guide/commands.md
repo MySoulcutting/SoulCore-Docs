@@ -43,12 +43,12 @@
 | 权限 | `soulcore.capabilities` |
 | 默认 | OP |
 
-### /soulcore effect clear
+### /soulcore effect
 
 清除指定玩家的某个受约束效果。
 
 ```text
-/soulcore effect clear <玩家> <effectId>
+/soulcore effect <玩家> clear <effectId>
 ```
 
 | 项目 | 值 |
@@ -62,7 +62,7 @@
 
 ### /soulcore-client
 
-打开总控设置菜单（伤害显示、生命恢复、怪物血量开关，拾取 HUD 位置设置）。
+打开总控设置菜单（伤害显示、生命恢复、怪物血量开关，以及拾取 HUD、任务追踪 HUD 和平滑字体设置）。
 
 ```text
 /soulcore-client
@@ -76,6 +76,26 @@
 /soulcore-client pickuphud
 ```
 
+### /soulcore-client questtracking
+
+直接打开 CustomQuest 任务追踪 HUD 布局设置界面。
+
+```text
+/soulcore-client questtracking
+```
+
+### /soulcore-client reload
+
+重新读取客户端本地的物品图片、模型、动画、字体与字符图标，并触发 SoulCore 资源重载。
+
+```text
+/soulcore-client reload
+```
+
+::: tip 两种重载的区别
+`/soulcore-client reload` 只重读当前客户端本地资源；修改 `plugins/SoulCore/` 下的服务端规则后，应执行 `/soulcore reload`。
+:::
+
 ## 权限列表
 
 | 权限 | 说明 | 默认 |
@@ -88,4 +108,5 @@
 ## 下一步
 
 - [构建与发布](/guide/building) —— 从源码构建、发布 Release
+- [总控设置](/guide/modules/settings) —— 客户端设置菜单
 - [FAQ](/faq) —— 常见问题

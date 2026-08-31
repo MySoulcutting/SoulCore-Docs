@@ -23,6 +23,7 @@
 2. 图片已放入客户端 `.minecraft/resourcepacks/soulcore/`，文件名与 `texture` 配置一致。
 3. 规则 `match` 中至少有一种匹配方式，且物品满足所有条件。
 4. 客户端为兼容版本（支持物品图片能力）。
+5. 只替换了客户端本地文件时，执行 `/soulcore-client reload` 重读资源。
 
 ### 如何调试匹配规则？
 
@@ -31,6 +32,11 @@
 - `lore` 只需要任意一行一致。
 - 多条件同时填写时需要全部满足。
 - 规则之间条件重叠时，`priority` 数值大者优先。
+- 新规则直接写在 `icons.yml` 根节点；旧 `icons:` / `items:` 包裹层仅用于兼容。
+
+### 为什么设置菜单里没有物品图片开关？
+
+从 `1.3.1` 起客户端开关已移除。安装 SoulCore 后物品图片始终参与能力协商；旧的 `item-images.properties` 不再生效。服务端可通过 `config.yml` 的 `modules.item-images` 与 `client.send-rules` 控制是否发送规则。
 
 ### 图片动画不动？
 
@@ -42,7 +48,7 @@
 
 ### GeckoLib 3D 模型不显示？
 
-- `model`、`animations`、`glow-texture` 使用 `/` 分隔的规范相对路径。
+- `model`、`animations`、`glow-texture` 使用 `/` 分隔的规范相对路径；`model` 必须是 GeckoLib 可解析的 `.json`，不能直接使用 `.bbmodel`。
 - 模型、动画、贴图文件需放入客户端 `resourcepacks/soulcore/` 对应路径。
 - `texture` 仍然必填，是模型加载失败时的回退图片。
 - 修改后服务端执行 `/soulcore reload`。
@@ -65,6 +71,8 @@
 - 只显示敌对生物（`Enemy` 契约）；第三方怪物若未实现该接口不会显示。
 - 血条有距离限制：超过 32 格或不在视锥内不渲染；隔墙不可见。
 - 确认总控菜单「怪物血量」开关已开启。
+- 连接 SoulCore Paper 时，检查 `plugins/SoulCore/modules/mob_health.yml`：`name: ["*"]` 显示全部，普通名称区分大小写精确匹配，`name: []` 会全部隐藏。
+- 修改名称列表后执行 `/soulcore reload`。
 
 ### 拾取提示不出现？
 
@@ -72,13 +80,44 @@
 - 同屏最多 5 条，最新条目在底部。
 - 位置可通过 `/soulcore-client pickuphud` 拖动调整。
 
+## 字体与 Emoji
+
+### 安装字体包后仍是原版字体？
+
+- `SoulCore-Fonts-<version>.zip` 必须解压，最终路径为 `.minecraft/resourcepacks/soulcore/fonts/smooth.ttf`。
+- 字体目录不需要在资源包界面启用；不要把 ZIP 多解压出一层同名目录。
+- 打开 `/soulcore-client` →「平滑字体设置」，确认本地字体已启用且选择了有效文件。
+- 字体缺失、超过 64 MiB 或格式无效时会安全回退 Minecraft 字体，并在 `logs/latest.log` 记录警告。
+
+### 彩色 Emoji 不显示？
+
+Emoji 包和字体包安装方式不同：`SoulCore-Color-Emoji-<version>.zip` 应保持压缩状态放入 `.minecraft/resourcepacks/`，并在 Minecraft 资源包界面启用。
+
+### 字符图标仍显示 `<sword>` 原文？
+
+检查 `font.yml` 的 `font-id`、`token`、`texture`、`width`、`height` 和 `ascent`；客户端 PNG 尺寸必须与配置一致。修改服务端规则后执行 `/soulcore reload`，只替换 PNG 时执行 `/soulcore-client reload`。
+
+## CustomQuest 集成
+
+### 任务对话、导航或追踪 HUD 没有出现？
+
+- 客户端需要 SoulCore `1.4.0` 或协议兼容版本。
+- CustomQuest 必须支持对应的 SoulCore 客户端通道；这三项功能不依赖 SoulCore Paper 插件。
+- 没有任务快照时追踪面板保持为空；连续约 13 秒没有心跳也会自动清空。
+- 导航目标超过 256 米且不超过 512 米时只显示光柱，超过 512 米不显示导航视觉。
+- 提供客户端 `logs/latest.log` 和 CustomQuest 服务端日志以排查通道或消息校验问题。
+
+### 如何滚动、收起任务面板或点击导航？
+
+按 `T` 打开原版聊天解锁鼠标，然后在任务面板上操作。布局可通过 `/soulcore-client questtracking` 调整；拾取 HUD 仍使用 `/soulcore-client pickuphud`。
+
 ## 服务端效果相关
 
 ### 效果文件改了但没生效？
 
 - 执行 `/soulcore reload`。
 - 确认 `config.yml` 中对应模块开关（`modules.*`）与协议通道（`protocol.*-channel-enabled`）已启用。
-- 在 `config.yml` 开启 `reload.watch-*` 可自动重载对应文件。
+- `config.yml` 只提供 `reload.watch-icons`、`reload.watch-hud` 和 `reload.watch-armor`；`font.yml`、`mob_health.yml`、Tooltip、粒子与按键配置仍需手动执行 `/soulcore reload`。
 
 ### 玩家进服没收到效果？
 
@@ -96,11 +135,11 @@
 
 ### 发布 Release 失败？
 
-- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致，例如：
+- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致。把下面的 `X.Y.Z` 替换为尚未发布的版本；不要重建已经存在的 `v1.4.0`：
 
 ```bash
-git tag v1.2.2
-git push origin v1.2.2
+git tag vX.Y.Z
+git push origin vX.Y.Z
 ```
 
 ## 兼容性相关
@@ -111,4 +150,4 @@ git push origin v1.2.2
 
 ### 客户端必须安装 SoulCore 吗？
 
-不是。服务端插件对未安装 Mod 的普通客户端是兼容的（默认 `allow-unknown` 模式）；只有安装了 SoulCore Fabric Mod 的客户端才能体验完整功能。
+不是。SoulCore Paper 默认使用 `allow-unknown`，可允许未安装 Mod 的普通客户端连接；只有安装 Fabric Mod 的客户端才能体验客户端增强。CustomQuest 是否要求新客户端由它自己的兼容策略决定。

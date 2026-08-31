@@ -85,7 +85,7 @@ spawn_banner:
 | 命令 | 说明 |
 |---|---|
 | `/soulcore hud <玩家> <id>` | 向指定玩家手动发送一个 HUD 条目 |
-| `/soulcore effect clear <玩家> <effectId>` | 清除指定玩家的某个 HUD 效果 |
+| `/soulcore effect <玩家> clear <effectId>` | 清除指定玩家的某个 HUD 效果 |
 
 ## 相关
 

@@ -6,7 +6,7 @@ const base = process.env.DOCS_BASE || '/SoulCore-Docs/'
 
 export default defineConfig({
   title: 'SoulCore',
-  description: 'SoulCore —— Minecraft 客户端 Mod 与 Paper 服务端插件',
+  description: 'SoulCore —— Minecraft 客户端 Mod、Paper 服务端插件与 CustomQuest 客户端增强',
   lang: 'zh-CN',
   base,
 
@@ -44,9 +44,18 @@ export default defineConfig({
           text: '客户端模块',
           items: [
             { text: '总控设置', link: '/guide/modules/settings' },
+            { text: '平滑字体与字符图标', link: '/guide/modules/smooth-fonts' },
             { text: '战斗文字', link: '/guide/modules/combat-text' },
             { text: '怪物血条', link: '/guide/modules/monster-health' },
             { text: '拾取提示', link: '/guide/modules/pickup-hud' }
+          ]
+        },
+        {
+          text: 'CustomQuest 集成',
+          items: [
+            { text: '任务对话', link: '/guide/modules/quest-dialogue' },
+            { text: '任务导航', link: '/guide/modules/quest-navigation' },
+            { text: '任务追踪 HUD', link: '/guide/modules/quest-tracking' }
           ]
         },
         {
@@ -68,14 +77,14 @@ export default defineConfig({
       provider: 'local'
     },
 
-    // 社交链接（部署后替换为真实仓库地址）
+    // 链接到当前文档仓库，避免匿名访问私有源码仓库时落入 404。
     socialLinks: [
-      { icon: 'github', label: 'GitHub', link: 'https://github.com/MySoulcutting/SoulCore' }
+      { icon: 'github', label: 'GitHub', link: 'https://github.com/MySoulcutting/SoulCore-Docs' }
     ],
 
     footer: {
       message: 'SoulCore 开源项目文档',
-      copyright: 'Copyright © 2025'
+      copyright: 'Copyright © 2026'
     },
 
     outline: {
