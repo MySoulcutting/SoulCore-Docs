@@ -1,6 +1,6 @@
 # 平滑字体与字符图标
 
-SoulCore Fabric 内嵌 ModernUI 的字体与 Text Engine 端口，提供整串文字塑形、BiDi、ICU 换行、SDF 世界文字、本地字体选择和服务端字符图标。无需另外安装 ModernUI-MC 或 Caxton。
+SoulCore NeoForge 内嵌 ModernUI 的字体与 Text Engine 端口，提供整串文字塑形、BiDi、ICU 换行、SDF 世界文字、本地字体选择和服务端字符图标。无需另外安装 ModernUI-MC 或 Caxton。
 
 **模块状态**：客户端字体 + 服务端字符图标 · 自 `1.3.1` 起提供；字符图标受客户端效果通道控制
 
@@ -102,7 +102,7 @@ HUD 或 Tooltip 文本中出现 `<sword>` 时会显示该图片。
 - `ascent` 控制图标相对文字基线的位置，不能超过 `height`。
 - 最多下发 64 条启用的图标规则。
 - 缺失或无效的图片不会激活 token，原始文字会保持可见。
-- 旧的 `type: smooth` 不再下发；请改用 Fabric 客户端字体设置。
+- 旧的 `type: smooth` 不再下发；请改用 NeoForge 客户端字体设置。
 
 修改 `font.yml` 后执行服务端 `/soulcore reload`，让在线客户端接收完整新规则。
 

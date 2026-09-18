@@ -1,6 +1,6 @@
 # 自定义物品图片
 
-SoulCore 由 Paper 配置物品匹配规则，Fabric 客户端把命中的物品替换为本地图片或 GeckoLib 3D 模型。配置文件为 `plugins/SoulCore/modules/icons.yml`。
+SoulCore 由 Paper 配置物品匹配规则，NeoForge 客户端把命中的物品替换为本地图片或 GeckoLib 3D 模型。配置文件为 `plugins/SoulCore/modules/icons.yml`。
 
 **模块状态**：服务端下发规则 + 客户端渲染 · 依赖：客户端 Mod + `ITEM_IMAGES` 能力
 
@@ -193,7 +193,7 @@ gecko_soul_blade:
 - 配置 `icon` 后，GUI 使用独立 2D 图标；手持、掉落、展示框和装备场景继续使用 3D 模型。
 - 未配置 `icon` 时，GUI 继续显示可由 `gui-scale` 与 `gui-rotation` 调整的 3D 模型。
 - `model` 只要求是 GeckoLib 可解析的 JSON，不强制文件名为 `.geo.json`；SoulCore 不直接解析 Blockbench `.bbmodel`。
-- GeckoLib 已内嵌到 SoulCore Fabric Mod，无需单独安装。
+- GeckoLib 已内嵌到 SoulCore NeoForge Mod，无需单独安装。
 
 ## 升级说明
 

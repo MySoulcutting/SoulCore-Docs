@@ -6,28 +6,26 @@
 
 | 组件 | 版本 |
 |---|---|
-| SoulCore | `1.4.0` |
-| Minecraft | `1.21.11` |
+| SoulCore | `1.5.2` |
+| Minecraft | `1.21.8` |
 | Java | `21+` |
-| Fabric Loader | `0.19.3+` |
-| Fabric API | `0.141.6+1.21.11` |
-| GeckoLib | `5.4.5`（内嵌，无需单独安装） |
+| NeoForge | `21.8.54+` |
+| GeckoLib | `5.2.2`（内嵌，无需单独安装） |
 | ModernUI Core | `3.13.0`（文字引擎已内嵌） |
-| Paper API | `1.21.11` |
+| Paper API | `1.21.8` |
 
-## 客户端安装（Fabric Mod）
+## 客户端安装（NeoForge Mod）
 
-### 1. 安装 Fabric Loader
+### 1. 安装 NeoForge
 
-使用 [Fabric 官方安装器](https://fabricmc.net/use/installer/)，为 `1.21.11` 版本安装 Fabric Loader `0.19.3+`。
+使用 NeoForge 安装器为 Minecraft `1.21.8` 安装 NeoForge `21.8.54+`，并创建对应的客户端启动配置。
 
 ### 2. 放入 Mod 文件
 
 将以下文件放入客户端 `.minecraft/mods/` 目录：
 
 ```text
-SoulCore-Fabirc-<version>.jar
-fabric-api-0.141.6+1.21.11.jar
+SoulCore-NeoForge-<version>.jar
 ```
 
 ### 3. 安装字体与 Emoji（可选）
@@ -52,11 +50,11 @@ Mod 启动时会自动创建客户端图片资源目录（若已存在则不会�
 
 ### 5. 验证
 
-- 使用 Fabric Loader 启动游戏，进入任意世界。
+- 使用 Minecraft `1.21.8` 的 NeoForge 配置启动游戏，进入任意世界。
 - 输入 `/soulcore-client`，应能打开总控设置菜单：三个显示开关，以及拾取 HUD、任务追踪 HUD 和平滑字体设置入口。
 
 ::: warning GeckoLib 注意事项
-GeckoLib 已内嵌在 SoulCore Fabric Mod 中，不需要再单独下载。如果 `mods` 目录已有其他 GeckoLib 版本，请保持版本兼容，避免同时加载不兼容版本。
+GeckoLib 已内嵌在 SoulCore NeoForge Mod 中，不需要再单独下载。如果 `mods` 目录已有其他 GeckoLib 版本，请保持版本兼容，避免同时加载不兼容版本。
 :::
 
 ::: warning ModernUI-MC 冲突
@@ -83,6 +81,7 @@ plugins/SoulCore/modules/tooltip-text.yml       # 物品 Tooltip 文本增强
 plugins/SoulCore/modules/particles.yml          # 进服自动触发的粒子效果
 plugins/SoulCore/modules/keybinds.yml           # 服务端按键定义
 plugins/SoulCore/modules/armor.yml              # 装备外观规则
+plugins/SoulCore/gui/example.yml                # 统一 GUI 示例
 ```
 
 ### 3. 重载配置
@@ -95,9 +94,13 @@ plugins/SoulCore/modules/armor.yml              # 装备外观规则
 
 所需权限：`soulcore.reload`（默认 OP）。
 
+## 自定义 GUI
+
+GUI 配置位于 `plugins/SoulCore/gui/`，当前只支持统一 schema。默认示例为 `gui/example.yml`，默认关闭；启用后执行 `/soulcore reload`。旧配置中的 `version`、`kind`、`theme`、`style` 和顶层 `title` 不再兼容，需要迁移到[统一 GUI 配置](/guide/modules/gui)。
+
 ## CustomQuest 可选集成
 
-任务对话、任务导航和任务追踪 HUD 需要服务端安装支持 SoulCore `1.4.0` 客户端通道的 CustomQuest。这些通道由 CustomQuest 直接与 Fabric 客户端通信，不依赖 SoulCore Paper 插件。
+任务对话、任务导航和任务追踪 HUD 需要服务端安装支持 SoulCore `1.4.0` 客户端通道的 CustomQuest。这些通道由 CustomQuest 直接与 NeoForge 客户端通信，不依赖 SoulCore Paper 插件。
 
 - [任务对话](/guide/modules/quest-dialogue)：NPC 标题、打字机正文与选项。
 - [任务导航](/guide/modules/quest-navigation)：信标光柱、圆环和距离标签。
@@ -123,7 +126,7 @@ plugins/SoulCore/modules/armor.yml              # 装备外观规则
 
 | 路径 | 用途 |
 |---|---|
-| 客户端 `mods/` | Mod 与 Fabric API |
+| 客户端 `mods/` | NeoForge Mod |
 | 客户端 `resourcepacks/soulcore/` | 自定义物品、装备外观、本地图片与字体（自动创建） |
 | 客户端 `config/soulcore/` | 战斗、怪物血条、拾取 HUD、任务追踪 HUD 与字体设置 |
 | 客户端 `resourcepacks/SoulCore-Color-Emoji-*.zip` | 可选彩色 Emoji 资源包，需要在资源包界面启用 |
@@ -143,6 +146,7 @@ plugins/SoulCore/modules/armor.yml              # 装备外观规则
 
 ## 下一步
 
+- [统一 GUI 配置](/guide/modules/gui) —— 配置 HUD、菜单和响应式组件
 - [自定义物品图片](/guide/modules/item-images) —— 配置第一把自定义物品
 - [平滑字体与字符图标](/guide/modules/smooth-fonts) —— 安装字体、Emoji 与字符图标
 - [客户端模块](/guide/modules/settings) —— 战斗文字、怪物血条、拾取提示与任务追踪

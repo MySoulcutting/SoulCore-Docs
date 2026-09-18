@@ -4,9 +4,9 @@
 
 - Java `21+`
 - 项目自带的 Gradle Wrapper，无需单独安装 Gradle
-- 首次构建需要联网下载 Gradle、Minecraft、Fabric、ModernUI 和 GeckoLib 依赖
+- 首次构建需要联网下载 Gradle、Minecraft、NeoForge、ModernUI 和 GeckoLib 依赖
 
-项目使用 Mojang official mappings。构建包含 Fabric、Paper、Protocol 与 `modernui-port`，不要只从单个子模块的旧输出判断完整发布是否成功。
+项目使用 Mojang official mappings。构建包含 NeoForge、Paper、Protocol 与 `modernui-port`，不要只从单个子模块的旧输出判断完整发布是否成功。
 
 ## 本地完整构建
 
@@ -25,7 +25,7 @@ Windows：
 根项目把五个可发布产物汇总到 `build/libs/`：
 
 ```text
-build/libs/SoulCore-Fabirc-<version>.jar
+build/libs/SoulCore-NeoForge-<version>.jar
 build/libs/SoulCore-Plugin-<version>.jar
 build/libs/protocol-<version>.jar
 build/libs/SoulCore-Fonts-<version>.zip
@@ -39,8 +39,8 @@ build/libs/SoulCore-Color-Emoji-<version>.zip
 ### 只构建指定内容
 
 ```bash
-# Fabric Mod
-./gradlew :fabric-mod:build
+# NeoForge Mod
+./gradlew :neoforge-mod:build
 
 # Paper 插件
 ./gradlew :paper-plugin:build
@@ -56,7 +56,7 @@ build/libs/SoulCore-Color-Emoji-<version>.zip
 
 完整 `build` 会运行模块测试和 JAR/资源包内容检查，包括：
 
-- Fabric remap JAR 的 metadata、入口、Mixin、嵌套 Protocol、GeckoLib 与 ModernUI 端口；
+- NeoForge JAR 的 metadata、客户端入口、Mixin、嵌套 Protocol、GeckoLib 与 ModernUI 端口；
 - Paper JAR 的默认配置文件；
 - 字体包目录、字体许可与摘要；
 - Emoji 资源包的 `pack.mcmeta`、数据和图片清单；
@@ -74,7 +74,7 @@ build/libs/SoulCore-Color-Emoji-<version>.zip
 
 成功后上传四组 Actions Artifact：
 
-- `SoulCore-Fabirc`
+- `SoulCore-NeoForge`
 - `SoulCore-Plugin`
 - `SoulCore-Protocol`
 - `SoulCore-Font-Packs`（字体与 Emoji 两个 ZIP）
@@ -89,13 +89,13 @@ git push origin vX.Y.Z
 ```
 
 ::: warning 版本一致性
-标签 `v` 后的版本必须与 `mod_version` 一致，否则发布任务会拒绝执行。`v1.4.0` 已经存在，不要照示例重建或覆盖已有标签；如需新发布，应先提升 `mod_version`。
+标签 `v` 后的版本必须与 `mod_version` 一致，否则发布任务会拒绝执行。`v1.5.2` 已经存在，不要照示例重建或覆盖已有标签；如需新发布，应先提升 `mod_version`。
 :::
 
 Release 自动包含：
 
 ```text
-SoulCore-Fabirc-<version>.jar
+SoulCore-NeoForge-<version>.jar
 SoulCore-Plugin-<version>.jar
 SoulCore-Protocol-<version>.jar
 SoulCore-Fonts-<version>.zip
@@ -108,12 +108,11 @@ SoulCore-Color-Emoji-<version>.zip
 
 | 属性 | 当前值 |
 |---|---|
-| `mod_version` | `1.4.0` |
-| `minecraft_version` | `1.21.11` |
-| `loader_version` | `0.19.3` |
-| `loom_version` | `1.17.17` |
-| `fabric_api_version` | `0.141.6+1.21.11` |
-| `geckolib_version` | `5.4.5` |
+| `mod_version` | `1.5.2` |
+| `minecraft_version` | `1.21.8` |
+| `neo_version` | `21.8.54` |
+| `moddev_version` | `2.0.143` |
+| `geckolib_version` | `5.2.2` |
 | `modernui_core_version` | `3.13.0` |
 | `arc3d_version` | `2026.2.0` |
 
@@ -131,6 +130,7 @@ SoulCore-Color-Emoji-<version>.zip
 - CustomQuest 对话的鼠标/键盘操作；
 - CustomQuest 导航的光柱、圆环、标签与生命周期清理；
 - 任务追踪 HUD 的滚动、收起、布局持久化和导航按钮。
+- 统一 GUI 的 HUD/MENU、文本标题组件、按钮交互、变量表达式、生命周期事件、alpha/scale 动态属性和有限动画。
 
 ## 下一步
 

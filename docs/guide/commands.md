@@ -30,6 +30,16 @@
 | 权限 | `soulcore.hud` |
 | 默认 | OP |
 
+### /soulcore gui
+
+打开统一 GUI 配置中的 `menu`。
+
+```text
+/soulcore gui <玩家> <GUI ID>
+```
+
+权限：`soulcore.gui`（默认 OP）。HUD 不能通过此命令打开；GUI ID 使用配置中的 `id`。
+
 ### /soulcore capabilities
 
 查看指定玩家的能力协商结果（客户端声明了哪些 SoulCore 能力）。
@@ -58,7 +68,7 @@
 
 ## 客户端命令
 
-客户端命令由 Fabric Mod 提供，**不会**发送到服务端。
+客户端命令由 NeoForge Mod 提供，**不会**发送到服务端。
 
 ### /soulcore-client
 
@@ -104,6 +114,7 @@
 | `soulcore.hud` | 手动发送 HUD 条目 | OP |
 | `soulcore.capabilities` | 查看玩家能力协商结果 | OP |
 | `soulcore.effect.clear` | 清除玩家效果 | OP |
+| `soulcore.gui` | 打开统一 GUI 配置中的 MENU | OP |
 
 ## 下一步
 

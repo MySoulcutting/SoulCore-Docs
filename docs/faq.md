@@ -4,7 +4,7 @@
 
 ### 服务端没有生成配置文件？
 
-- 确认 Paper 版本为 `1.21.11`。
+- 确认 Paper 版本为 `1.21.8`。
 - 查看服务端日志，确认插件加载成功（`SoulCore` 出现在插件列表中）。
 - 检查 `plugins/` 目录权限。
 
@@ -12,6 +12,38 @@
 
 - 确认 Mod 已加载：Mod 列表或 F3 界面中可见 SoulCore。
 - 目录由 Mod 启动时自动创建；若已存在则不会修改其中的文件。
+
+## GUI 相关
+
+### GUI 没有显示？
+
+1. 确认文件位于 `plugins/SoulCore/gui/`。
+2. 确认配置包含 `enable: true`、`id`、`type` 和 `design`。
+3. 确认没有使用已移除的 `version`、`kind`、`theme`、`style` 或顶层 `title`。
+4. 执行 `/soulcore reload`，查看服务端日志中的 `[GUI]` 警告。
+5. MENU 使用 `/soulcore gui <玩家> <GUI ID>` 打开；HUD 会在客户端握手后自动显示。
+
+### PlaceholderAPI 变量没有生效？
+
+`state.variables.*.source` 使用 `%...%` 时，需要服务端安装并启用 PlaceholderAPI。没有 PlaceholderAPI 时，数值变量无法用于进度条、条件或动画计算。
+
+### GUI 图片缺失？
+
+Paper 只发送资源 ID，不发送图片本体。图片必须放在客户端：
+
+```text
+.minecraft/resourcepacks/soulcore/
+```
+
+检查 `texture` 是否为合法 namespaced resource ID，并执行 `/soulcore-client reload` 重载本地资源。
+
+### 按钮没有反应？
+
+按钮只能放在 `type: menu` 的 GUI 中。HUD 禁止按钮；客户端还需要协商 `GUI_INTERACTIONS` 能力。服务端会校验 session、view、sequence、按钮 ID、权限和每玩家限流。
+
+### 旧 GUI 配置为什么不加载？
+
+1.5.2 只支持统一 schema。请删除 `version`、`kind`、`theme`、`style` 和顶层 `title`；标题改成 `components` 下的 `text` 组件。
 
 ## 物品图片相关
 
@@ -55,7 +87,7 @@
 
 ### 需要单独安装 GeckoLib 吗？
 
-不需要。GeckoLib `5.4.5` 已内嵌到 SoulCore Fabric Mod。如果 `mods` 目录已有其他 GeckoLib 版本，请保持版本兼容，避免同时加载不兼容版本。
+不需要。GeckoLib `5.2.2` 已内嵌到 SoulCore NeoForge Mod。如果 `mods` 目录已有其他 GeckoLib 版本，请保持版本兼容，避免同时加载不兼容版本。
 
 ## 客户端功能相关
 
@@ -131,11 +163,11 @@ Emoji 包和字体包安装方式不同：`SoulCore-Color-Emoji-<version>.zip` �
 
 - 确认 Java 版本为 `21+`。
 - 使用项目自带的 Gradle Wrapper（`./gradlew` / `.\gradlew.bat`）。
-- 完整构建：`./gradlew clean build`；单模块：`:fabric-mod:build` 或 `:paper-plugin:build`。
+- 完整构建：`./gradlew clean build`；单模块：`:neoforge-mod:build` 或 `:paper-plugin:build`。
 
 ### 发布 Release 失败？
 
-- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致。把下面的 `X.Y.Z` 替换为尚未发布的版本；不要重建已经存在的 `v1.4.0`：
+- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致。把下面的 `X.Y.Z` 替换为尚未发布的版本；不要重建已经存在的 `v1.5.2`：
 
 ```bash
 git tag vX.Y.Z
@@ -146,8 +178,8 @@ git push origin vX.Y.Z
 
 ### 支持哪些 Minecraft 版本？
 
-目前支持 `1.21.11`。升级 Minecraft、Loader、Fabric API 或 Paper 版本时，需要同步更新项目配置并重新构建。
+目前客户端与构建基线为 Minecraft `1.21.8`、NeoForge `21.8.54+`。升级 Minecraft、NeoForge、ModDevGradle 或 Paper 版本时，需要同步更新项目配置并重新构建。
 
 ### 客户端必须安装 SoulCore 吗？
 
-不是。SoulCore Paper 默认使用 `allow-unknown`，可允许未安装 Mod 的普通客户端连接；只有安装 Fabric Mod 的客户端才能体验客户端增强。CustomQuest 是否要求新客户端由它自己的兼容策略决定。
+不是。SoulCore Paper 默认使用 `allow-unknown`，可允许未安装 Mod 的普通客户端连接；只有安装 NeoForge Mod 的客户端才能体验客户端增强。CustomQuest 是否要求新客户端由它自己的兼容策略决定。

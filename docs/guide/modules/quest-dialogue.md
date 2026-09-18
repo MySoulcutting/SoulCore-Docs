@@ -6,7 +6,7 @@ SoulCore `1.4.0` 可把配套 CustomQuest 服务端选出的 NPC 对话显示为
 
 ## 使用前提
 
-- 客户端安装 SoulCore Fabric `1.4.0` 或同协议兼容版本。
+- 客户端安装 SoulCore NeoForge `1.4.0` 或同协议兼容版本。
 - Paper 服务端安装支持 SoulCore 任务对话通道的 CustomQuest。
 - NPC、对话、任务条件和点击动作均在 CustomQuest 中配置；SoulCore 没有单独的对话配置文件。
 
