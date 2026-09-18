@@ -8,7 +8,7 @@
 
 - 玩家进服完成握手后，`hud.yml` 中 `enable: true` 的条目自动发送。
 - `enable: false` 的条目需要 OP 用 `/soulcore hud <玩家> <id>` 手动发送。
-- 需要 `config.yml` 中 `modules.hud-text` / `modules.hud-images` 与 `protocol.effects-channel-enabled` 均为 `true`。
+- 需要 `config.yml` 中 `features.hud: true`；屏幕叠加与相机效果分别由 `features.screen-overlay`、`features.camera-effects` 控制。协议通道会随功能能力协商，不再使用旧的 `modules.hud-text`、`modules.hud-images` 或 `protocol.effects-channel-enabled` 字段。
 
 ## 文本条目
 
@@ -89,5 +89,6 @@ spawn_banner:
 
 ## 相关
 
-- [总控配置](/faq) —— `config.yml` 模块开关
+- [统一 GUI 配置](/guide/modules/gui) —— 需要完整 HUD/MENU、变量、按钮或动画时使用
+- [FAQ](/faq) —— `config.yml` 功能开关与排查
 - [Tooltip 增强](/guide/modules/tooltip) · [粒子效果](/guide/modules/particles)

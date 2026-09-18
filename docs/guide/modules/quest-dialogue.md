@@ -1,12 +1,12 @@
 # CustomQuest 任务对话
 
-SoulCore `1.4.0` 可把配套 CustomQuest 服务端选出的 NPC 对话显示为沉浸式客户端界面。世界画面保持可见，正文逐字出现，玩家选择通过一次性会话安全回传。
+SoulCore NeoForge 客户端可把配套 CustomQuest 服务端选出的 NPC 对话显示为沉浸式客户端界面。世界画面保持可见，正文逐字出现，玩家选择通过一次性会话安全回传。
 
 **模块状态**：客户端 · 可选集成 CustomQuest · 不依赖 SoulCore Paper 插件
 
 ## 使用前提
 
-- 客户端安装 SoulCore NeoForge `1.4.0` 或同协议兼容版本。
+- 客户端安装当前 SoulCore NeoForge 版本或同协议兼容版本。
 - Paper 服务端安装支持 SoulCore 任务对话通道的 CustomQuest。
 - NPC、对话、任务条件和点击动作均在 CustomQuest 中配置；SoulCore 没有单独的对话配置文件。
 
@@ -39,7 +39,7 @@ SoulCore 客户端只显示服务端提供的标题、正文与稳定选项 ID�
 
 ## 没有显示对话时
 
-1. 确认 SoulCore 客户端版本至少为 `1.4.0`。
+1. 确认 SoulCore NeoForge 客户端与 CustomQuest 使用兼容的当前协议通道。
 2. 确认 CustomQuest 已启用客户端对话集成，并且 NPC 对话配置有效。
 3. 查看客户端 `logs/latest.log` 与服务端日志，确认没有通道版本或消息校验错误。
 4. 使用旧客户端对照测试；旧客户端不会声明新通道，服务端会按 CustomQuest 自身的兼容策略处理。

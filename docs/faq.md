@@ -68,7 +68,7 @@ Paper 只发送资源 ID，不发送图片本体。图片必须放在客户端�
 
 ### 为什么设置菜单里没有物品图片开关？
 
-从 `1.3.1` 起客户端开关已移除。安装 SoulCore 后物品图片始终参与能力协商；旧的 `item-images.properties` 不再生效。服务端可通过 `config.yml` 的 `modules.item-images` 与 `client.send-rules` 控制是否发送规则。
+从 `1.3.1` 起客户端开关已移除。安装 SoulCore 后物品图片始终参与能力协商；旧的 `item-images.properties` 不再生效。服务端通过 `config.yml` 的 `features.item-images` 控制是否发送规则。
 
 ### 图片动画不动？
 
@@ -148,8 +148,8 @@ Emoji 包和字体包安装方式不同：`SoulCore-Color-Emoji-<version>.zip` �
 ### 效果文件改了但没生效？
 
 - 执行 `/soulcore reload`。
-- 确认 `config.yml` 中对应模块开关（`modules.*`）与协议通道（`protocol.*-channel-enabled`）已启用。
-- `config.yml` 只提供 `reload.watch-icons`、`reload.watch-hud` 和 `reload.watch-armor`；`font.yml`、`mob_health.yml`、Tooltip、粒子与按键配置仍需手动执行 `/soulcore reload`。
+- 确认 `config.yml` 中对应的 `features.*` 开关已启用；协议通道会随客户端能力协商，不再使用旧的 `modules.*` 与 `protocol.*-channel-enabled` 字段。
+- `config.yml` 的 `auto-reload.enabled` 可监视 `modules/` 与 `gui/` 下的 YAML；关闭自动重载时，修改后手动执行 `/soulcore reload`。
 
 ### 玩家进服没收到效果？
 

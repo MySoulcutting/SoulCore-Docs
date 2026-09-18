@@ -1,6 +1,6 @@
 # CustomQuest 任务导航
 
-SoulCore `1.4.0` 接收 CustomQuest 的服务端权威导航目标，并在客户端世界中绘制信标光柱、目标圆环和任务名/距离标签。
+SoulCore NeoForge 客户端接收 CustomQuest 的服务端权威导航目标，并在客户端世界中绘制信标光柱、目标圆环和任务名/距离标签。
 
 **模块状态**：客户端 · 可选集成 CustomQuest · 不依赖 SoulCore Paper 插件
 
@@ -41,7 +41,7 @@ SoulCore `1.4.0` 接收 CustomQuest 的服务端权威导航目标，并在客�
 
 ## 常见排查
 
-- 完全没有标记：确认客户端为 SoulCore `1.4.0` 或协议兼容版本，且 CustomQuest 已识别客户端通道。
+- 完全没有标记：确认客户端与 CustomQuest 使用兼容的当前 SoulCore 通道，且 CustomQuest 已识别客户端。
 - 只有光柱：目标可能超过 256 米但仍在 512 米以内，这是正常行为。
 - 超过 512 米消失：属于渲染距离上限，不代表服务端导航已取消。
 - 标记没有清理：提供客户端 `logs/latest.log`、服务端日志和最小复现步骤，并说明是取消、到达、重载还是换世界后残留。

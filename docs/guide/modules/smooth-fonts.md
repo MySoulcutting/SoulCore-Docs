@@ -95,7 +95,7 @@ sword:
 
 HUD 或 Tooltip 文本中出现 `<sword>` 时会显示该图片。
 
-服务端下发字符图标要求 `config.yml` 中根 `enabled`、`modules.client-effects` 与 `protocol.effects-channel-enabled` 均为 `true`。这些开关只影响服务端图标规则，不影响客户端本地平滑字体。
+服务端下发字符图标需要 `config.yml` 中 `features.font-icons: true`。这些开关只影响服务端图标规则，不影响客户端本地平滑字体。协议通道会随客户端能力协商，不再使用旧的根 `enabled`、`modules.client-effects` 或 `protocol.effects-channel-enabled` 字段。
 
 - `font-id` 必须是合法的命名空间 ID。
 - `width`、`height` 必须与 PNG 像素尺寸一致。

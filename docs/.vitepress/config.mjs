@@ -26,6 +26,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '使用教程', link: '/guide/getting-started' },
+      { text: '服务端模块', link: '/guide/modules/gui' },
       { text: 'FAQ', link: '/faq' }
     ],
 
@@ -37,7 +38,6 @@ export default defineConfig({
             { text: '快速开始', link: '/guide/getting-started' },
             { text: '安装', link: '/guide/installation' },
             { text: '命令与权限', link: '/guide/commands' },
-            { text: '统一 GUI 配置', link: '/guide/modules/gui' },
             { text: '构建与发布', link: '/guide/building' }
           ]
         },
@@ -62,6 +62,7 @@ export default defineConfig({
         {
           text: '服务端模块',
           items: [
+            { text: '统一 GUI 配置', link: '/guide/modules/gui' },
             { text: '自定义物品图片', link: '/guide/modules/item-images' },
             { text: 'HUD 文本与图片', link: '/guide/modules/hud' },
             { text: 'Tooltip 增强', link: '/guide/modules/tooltip' },

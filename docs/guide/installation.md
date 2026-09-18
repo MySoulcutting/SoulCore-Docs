@@ -73,15 +73,20 @@ SoulCore 已内嵌专用的 ModernUI Text Port，并明确与完整 ModernUI-MC�
 
 ```text
 plugins/SoulCore/config.yml                     # 服务端总配置
+plugins/SoulCore/advanced.yml                   # 性能、安全上限与限流
 plugins/SoulCore/modules/font.yml               # 字符替换图标；平滑字体由客户端设置
 plugins/SoulCore/modules/icons.yml              # 自定义物品图片匹配规则
 plugins/SoulCore/modules/mob_health.yml         # 怪物血条完整名称白名单
 plugins/SoulCore/modules/hud.yml                # 进服自动下发的 HUD 文本与图片
-plugins/SoulCore/modules/tooltip-text.yml       # 物品 Tooltip 文本增强
+plugins/SoulCore/modules/tooltip.yml            # 物品 Tooltip 文本增强
 plugins/SoulCore/modules/particles.yml          # 进服自动触发的粒子效果
 plugins/SoulCore/modules/keybinds.yml           # 服务端按键定义
 plugins/SoulCore/modules/armor.yml              # 装备外观规则
-plugins/SoulCore/gui/example.yml                # 统一 GUI 示例
+plugins/SoulCore/modules/entity_model.yml        # 实体模型规则
+plugins/SoulCore/modules/boss_health.yml         # Boss 多管血条
+plugins/SoulCore/modules/toast.yml               # Toast 规则
+plugins/SoulCore/modules/item_layers.yml         # 物品图层规则
+plugins/SoulCore/gui/example.yml                 # 统一 GUI 示例
 ```
 
 ### 3. 重载配置
@@ -100,7 +105,7 @@ GUI 配置位于 `plugins/SoulCore/gui/`，当前只支持统一 schema。默认
 
 ## CustomQuest 可选集成
 
-任务对话、任务导航和任务追踪 HUD 需要服务端安装支持 SoulCore `1.4.0` 客户端通道的 CustomQuest。这些通道由 CustomQuest 直接与 NeoForge 客户端通信，不依赖 SoulCore Paper 插件。
+任务对话、任务导航和任务追踪 HUD 需要服务端安装支持当前 SoulCore 客户端通道的 CustomQuest。这些通道由 CustomQuest 直接与 NeoForge 客户端通信，不依赖 SoulCore Paper 插件。
 
 - [任务对话](/guide/modules/quest-dialogue)：NPC 标题、打字机正文与选项。
 - [任务导航](/guide/modules/quest-navigation)：信标光柱、圆环和距离标签。
@@ -132,6 +137,7 @@ GUI 配置位于 `plugins/SoulCore/gui/`，当前只支持统一 schema。默认
 | 客户端 `resourcepacks/SoulCore-Color-Emoji-*.zip` | 可选彩色 Emoji 资源包，需要在资源包界面启用 |
 | 服务端 `plugins/SoulCore/config.yml` | 服务端总开关与限制 |
 | 服务端 `plugins/SoulCore/modules/` | 各功能的具体规则文件 |
+| 服务端 `plugins/SoulCore/gui/` | 统一 GUI 的 HUD 与 MENU 配置 |
 
 ::: tip 本地资源目录说明
 `resourcepacks/soulcore/` 是 SoulCore 读取的普通文件目录：

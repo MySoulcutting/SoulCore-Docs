@@ -13,11 +13,11 @@ hero:
       text: 快速开始
       link: /guide/getting-started
     - theme: alt
+      text: 统一 GUI 配置
+      link: /guide/modules/gui
+    - theme: alt
       text: 自定义物品图片
       link: /guide/modules/item-images
-    - theme: alt
-      text: CustomQuest 集成
-      link: /guide/modules/quest-dialogue
 
 features:
   - icon: { src: /icons/sword.svg, alt: 战斗反馈 }
@@ -73,5 +73,5 @@ SoulCore 的核心产物包括 **SoulCore-NeoForge**（NeoForge 客户端 Mod）
 - [自定义 GUI](/guide/modules/gui) —— HUD、菜单、组件、变量和动画
 - [自定义物品图片](/guide/modules/item-images) —— 最常用的进阶玩法
 - [客户端模块](/guide/modules/settings) —— 战斗文字、怪物血条、拾取提示、字体与总控设置
-- [服务端模块](/guide/modules/item-images) —— 物品图片、HUD、Tooltip、粒子、按键与装备外观
+- [服务端模块](/guide/modules/gui) —— 统一 GUI、物品图片、HUD、Tooltip、粒子、按键、Boss 血条与装备外观
 - [命令与权限](/guide/commands) —— 完整命令参考

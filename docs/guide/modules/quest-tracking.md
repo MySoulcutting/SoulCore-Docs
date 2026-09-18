@@ -1,6 +1,6 @@
 # CustomQuest 任务追踪 HUD
 
-SoulCore `1.4.0` 接收 CustomQuest 的服务端权威任务快照，在客户端右上区域显示多任务追踪面板，并提供滚动、收起、布局调整和一键导航。
+SoulCore NeoForge 客户端接收 CustomQuest 的服务端权威任务快照，在客户端右上区域显示多任务追踪面板，并提供滚动、收起、布局调整和一键导航。
 
 **模块状态**：客户端 · 可选集成 CustomQuest · 不依赖 SoulCore Paper 插件
 

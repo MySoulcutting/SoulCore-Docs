@@ -38,20 +38,25 @@ SoulCore 的 NeoForge 客户端可以独立提供战斗文字、怪物血条、�
 2. 启动（或重启）服务端。首次启动后插件会生成配置文件：
    ```
    plugins/SoulCore/config.yml
+   plugins/SoulCore/advanced.yml
    plugins/SoulCore/modules/font.yml
    plugins/SoulCore/modules/icons.yml
+   plugins/SoulCore/modules/item_layers.yml
    plugins/SoulCore/modules/mob_health.yml
+   plugins/SoulCore/modules/boss_health.yml
+   plugins/SoulCore/modules/entity_model.yml
    plugins/SoulCore/modules/hud.yml
-   plugins/SoulCore/modules/tooltip-text.yml
+   plugins/SoulCore/modules/tooltip.yml
    plugins/SoulCore/modules/particles.yml
    plugins/SoulCore/modules/keybinds.yml
    plugins/SoulCore/modules/armor.yml
+   plugins/SoulCore/modules/toast.yml
    ```
-3. 如需自定义 HUD 或菜单，编辑 `plugins/SoulCore/gui/example.yml`，将 `enable` 改为 `true`，然后执行 `/soulcore reload`。
+3. 如需自定义 HUD 或菜单，编辑 `plugins/SoulCore/gui/example.yml`，将 `enable` 改为 `true`；其他配置完成后统一执行 `/soulcore reload`。
 
 ## 4. 可选安装 CustomQuest
 
-将支持 SoulCore `1.4.0` 客户端通道的 CustomQuest 放入服务端 `plugins/`。任务对话、导航和追踪快照由 CustomQuest 直接发送给 NeoForge 客户端，**不依赖 SoulCore Paper 插件**。
+将支持当前 SoulCore NeoForge 客户端通道的 CustomQuest 放入服务端 `plugins/`。任务对话、导航和追踪快照由 CustomQuest 直接发送给 NeoForge 客户端，**不依赖 SoulCore Paper 插件**。
 
 具体的 NPC 对话、任务目标与导航坐标在 CustomQuest 中配置；SoulCore 只负责客户端显示与交互。
 
@@ -74,7 +79,7 @@ SoulCore 的 NeoForge 客户端可以独立提供战斗文字、怪物血条、�
 | 客户端没有自动创建 `resourcepacks/soulcore/` | 确认 Mod 已加载（F3 界面或 Mod 列表可见），目录会被创建但不会重复修改已有文件 |
 | 物品图片不生效 | 确认服务端已 `/soulcore reload`，且图片文件名与 `texture` 配置一致，客户端图片目录存在对应文件 |
 | 平滑字体没有变化 | 确认字体 ZIP 已解压到 `resourcepacks/soulcore/fonts/`，没有多套一层目录 |
-| CustomQuest 面板为空 | 确认客户端为 `1.4.0` 或协议兼容版本，且 CustomQuest 支持对应通道 |
+| CustomQuest 面板为空 | 确认客户端与 CustomQuest 支持当前 SoulCore 通道，且服务端已发送任务快照 |
 | 客户端命令无效 | `/soulcore-client` 是纯客户端命令，不向服务端发送；确认输入正确且无多余空格 |
 
 ::: tip 升级提示

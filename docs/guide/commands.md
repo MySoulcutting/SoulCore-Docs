@@ -6,7 +6,7 @@
 
 ### /soulcore reload
 
-重新加载服务端配置（`config.yml` 与 `modules/` 下所有文件）。
+重新加载服务端配置（`config.yml`、`advanced.yml`、`modules/` 与 `gui/` 下的配置文件）。
 
 ```text
 /soulcore reload

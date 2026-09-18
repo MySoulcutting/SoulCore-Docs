@@ -4,14 +4,14 @@
 该功能尚未进行测试，可能存在 bug，请谨慎使用。
 :::
 
-服务端在玩家进服时下发规则，为物品 Tooltip 追加、前置或替换文本行。配置位于 `plugins/SoulCore/modules/tooltip-text.yml`。
+服务端在玩家进服时下发规则，为物品 Tooltip 追加、前置或替换文本行。配置位于 `plugins/SoulCore/modules/tooltip.yml`。
 
 **模块状态**：服务端 · 依赖：客户端 Mod + effects 协议通道
 
 ## 工作原理
 
 - 玩家进服完成握手后，所有条目自动发送。
-- 需要 `config.yml` 中 `modules.tooltip` 与 `protocol.effects-channel-enabled` 均为 `true`。
+- 需要 `config.yml` 中 `features.tooltip: true`；客户端能力协商决定是否接收 Tooltip 规则。
 
 ## 配置示例
 

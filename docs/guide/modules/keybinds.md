@@ -11,7 +11,7 @@
 ## 工作原理
 
 - 玩家进服完成握手后，所有按键定义自动发送。
-- 需要 `config.yml` 中 `modules.server-keybinds` 与 `protocol.input-channel-enabled` 均为 `true`。
+- 需要 `config.yml` 中 `features.server-keybinds: true`；客户端能力协商决定是否接收按键规则。
 - 客户端收到定义后，在按键设置界面显示，玩家可以绑定或改键。
 
 ## 配置示例

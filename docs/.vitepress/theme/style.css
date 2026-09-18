@@ -419,6 +419,171 @@ button {
 }
 
 /* =====================================================================
+ * 文档站统一布局增强
+ * ===================================================================== */
+:root {
+  --sc-content-width: 960px;
+  --sc-reading-width: 820px;
+  --sc-glow: 0 0 0 1px color-mix(in srgb, var(--vp-c-brand-1) 14%, transparent),
+    0 14px 38px color-mix(in srgb, var(--vp-c-brand-1) 9%, transparent);
+}
+
+.VPContent .container {
+  max-width: var(--sc-content-width);
+}
+
+.vp-doc {
+  max-width: var(--sc-reading-width);
+  padding-bottom: 72px;
+  line-height: 1.72;
+}
+
+.vp-doc h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.12;
+  margin-bottom: 1.5rem;
+}
+
+.vp-doc h2 {
+  margin-top: 3.2rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc h3 {
+  margin-top: 2.1rem;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc > .custom-block:first-child,
+.vp-doc > blockquote:first-child {
+  margin-top: 0;
+}
+
+.vp-doc blockquote {
+  margin: 1.5rem 0;
+  padding: 0.95rem 1.1rem;
+  border-left: 3px solid var(--vp-c-brand-1);
+  border-radius: 0 10px 10px 0;
+  background: color-mix(in srgb, var(--vp-c-brand-1) 7%, var(--vp-c-bg-soft));
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .custom-block {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--vp-c-border) 45%, transparent);
+}
+
+.vp-doc div[class*='language-'] {
+  position: relative;
+  margin: 1.35rem 0 1.7rem;
+  box-shadow: var(--sc-glow);
+}
+
+.vp-doc div[class*='language-'] code {
+  line-height: 1.65;
+}
+
+.vp-doc table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: normal;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--vp-c-border) 35%, transparent);
+}
+
+.vp-doc th,
+.vp-doc td {
+  min-width: 8rem;
+  vertical-align: top;
+}
+
+.vp-doc tr:hover {
+  background: color-mix(in srgb, var(--vp-c-brand-1) 6%, var(--vp-c-bg-soft));
+}
+
+.vp-doc :not(pre) > code {
+  white-space: break-spaces;
+  overflow-wrap: anywhere;
+}
+
+.VPSidebarItem.level-0 > .item {
+  margin: 0.35rem 0;
+  padding: 0.45rem 0.7rem;
+  border-radius: 9px;
+}
+
+.VPSidebarItem.level-0.is-active > .item,
+.VPSidebarItem.level-0:hover > .item {
+  background: color-mix(in srgb, var(--vp-c-brand-1) 7%, transparent);
+}
+
+.VPDocAside {
+  padding-left: 24px;
+}
+
+.VPDocAsideOutline .outline-link {
+  line-height: 1.45;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.VPDocAsideOutline .outline-link:hover,
+.VPDocAsideOutline .outline-link.active {
+  color: var(--vp-c-brand-1);
+  transform: translateX(2px);
+}
+
+@media (max-width: 960px) {
+  .VPContent .container {
+    max-width: 100%;
+  }
+
+  .VPDocAside {
+    display: none;
+  }
+
+  .vp-doc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .vp-doc {
+    padding-bottom: 42px;
+    font-size: 15px;
+    line-height: 1.68;
+  }
+
+  .vp-doc h1 {
+    font-size: 2rem;
+  }
+
+  .vp-doc h2 {
+    margin-top: 2.35rem;
+    font-size: 1.45rem;
+  }
+
+  .vp-doc h3 {
+    font-size: 1.15rem;
+  }
+
+  .vp-doc div[class*='language-'] {
+    margin-left: -4px;
+    margin-right: -4px;
+    border-radius: 8px;
+  }
+
+  .vp-doc table {
+    font-size: 0.9rem;
+  }
+
+  .vp-doc th,
+  .vp-doc td {
+    min-width: 7rem;
+    padding: 0.65rem 0.8rem;
+  }
+}
+
+/* =====================================================================
  * 页脚
  * ===================================================================== */
 .VPFooter {

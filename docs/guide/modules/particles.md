@@ -11,7 +11,7 @@
 ## 工作原理
 
 - 玩家进服完成握手后，所有条目自动发送。
-- 需要 `config.yml` 中 `modules.particles` 与 `protocol.effects-channel-enabled` 均为 `true`。
+- 需要 `config.yml` 中 `features.particles: true`；客户端能力协商决定是否接收粒子规则。
 
 ## 配置示例
 

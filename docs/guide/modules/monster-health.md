@@ -44,7 +44,7 @@ name:
 | `name: []` | 不显示任何怪物血条 |
 
 - 最多加载 64 个名称；超出或无效的条目会跳过并写入服务端日志。
-- 下发规则要求 `config.yml` 中根 `enabled`、`modules.client-effects` 与 `protocol.effects-channel-enabled` 均为 `true`。
+- 下发规则要求 `config.yml` 中 `features.monster-health: true`；客户端能力协商决定是否接收规则。
 - 修改后执行 `/soulcore reload`。在线兼容客户端会收到完整规则，并清空旧的名称判定缓存与可见快照。
 - 上述开关关闭、旧服务端、无 SoulCore Paper 插件或未协商该能力时，客户端会保持兼容行为：显示全部符合条件的敌对生物。
 

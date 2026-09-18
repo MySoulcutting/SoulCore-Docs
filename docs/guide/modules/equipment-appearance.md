@@ -8,7 +8,7 @@
 
 - 玩家进服完成握手后，装备外观规则自动发送。
 - 客户端根据匹配规则为符合条件的物品应用外观纹理。
-- 需要 `config.yml` 中 `modules.equipment-appearance` 与 `protocol.equipment-appearance-channel-enabled` 均为 `true`。
+- 需要 `config.yml` 中 `features.equipment-appearance: true`；客户端能力协商决定是否接收装备外观规则。
 
 ## 配置示例
 
