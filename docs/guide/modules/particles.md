@@ -1,8 +1,6 @@
 # 粒子效果
 
-::: danger 未测试功能
-该功能尚未进行测试，可能存在 bug，请谨慎使用。
-:::
+**模块状态**：服务端规则 + 客户端渲染 · 已实现 · 受事件频率与粒子数量限制保护
 
 服务端在玩家进服时自动在指定坐标生成粒子效果。配置位于 `plugins/SoulCore/modules/particles.yml`。
 
@@ -40,8 +38,8 @@ spawn_sparkle:
 
 ## 限制
 
-- 单次粒子事件最多生成 128 个粒子（受 `config.yml` 的 `limits.max-particle-count` 控制）。
-- 每名玩家每秒最多接收 40 个效果事件（受 `limits.max-events-per-player-per-second` 控制）。
+- 单次粒子事件最多生成 128 个粒子（受 `advanced.yml` 的 `effect-limits.max-particle-count` 控制）。
+- 每名玩家每秒最多接收 40 个效果事件（受 `advanced.yml` 的 `rate-limits.max-events-per-player-per-second` 控制）。
 
 ## 相关
 

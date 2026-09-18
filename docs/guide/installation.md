@@ -154,6 +154,7 @@ GUI 配置位于 `plugins/SoulCore/gui/`，当前只支持统一 schema。默认
 
 - [统一 GUI 配置](/guide/modules/gui) —— 配置 HUD、菜单和响应式组件
 - [自定义物品图片](/guide/modules/item-images) —— 配置第一把自定义物品
+- [Boss 多管血条](/guide/modules/boss-health) · [实体模型](/guide/modules/entity-model) · [Toast 悬浮条](/guide/modules/toast)
 - [平滑字体与字符图标](/guide/modules/smooth-fonts) —— 安装字体、Emoji 与字符图标
 - [客户端模块](/guide/modules/settings) —— 战斗文字、怪物血条、拾取提示与任务追踪
 - [服务端模块](/guide/modules/hud) —— HUD、Tooltip、粒子、按键与装备外观

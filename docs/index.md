@@ -73,5 +73,5 @@ SoulCore 的核心产物包括 **SoulCore-NeoForge**（NeoForge 客户端 Mod）
 - [自定义 GUI](/guide/modules/gui) —— HUD、菜单、组件、变量和动画
 - [自定义物品图片](/guide/modules/item-images) —— 最常用的进阶玩法
 - [客户端模块](/guide/modules/settings) —— 战斗文字、怪物血条、拾取提示、字体与总控设置
-- [服务端模块](/guide/modules/gui) —— 统一 GUI、物品图片、HUD、Tooltip、粒子、按键、Boss 血条与装备外观
+- [服务端模块](/guide/modules/gui) —— 统一 GUI、物品图片、物品图层、HUD、Tooltip、怪物/Boss 血条、实体模型、Toast、粒子、按键与装备外观
 - [命令与权限](/guide/commands) —— 完整命令参考

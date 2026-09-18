@@ -56,7 +56,7 @@ texture:
 
 ## 限制
 
-- 装备外观 Manifest 最多包含 512 条规则（受 `config.yml` 的 `limits.max-appearance-rules` 控制）。
+- 装备外观 Manifest 最多包含 512 条规则（受 `advanced.yml` 的 `effect-limits.max-appearance-rules` 控制）。
 
 ## 相关
 

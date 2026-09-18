@@ -1,8 +1,6 @@
 # 服务端按键
 
-::: danger 未测试功能
-该功能尚未进行测试，可能存在 bug，请谨慎使用。
-:::
+**模块状态**：服务端按键定义 + 客户端输入回传 · 已实现 · 受能力协商与频率限制保护
 
 服务端定义自定义按键，客户端显示在按键设置中，并将按键事件上报给服务端。配置位于 `plugins/SoulCore/modules/keybinds.yml`。
 
@@ -37,8 +35,8 @@ skill_1:
 
 ## 限制
 
-- 单次最多下发 64 个按键定义（受 `config.yml` 的 `limits.max-keybind-definitions` 控制）。
-- 每名玩家每秒最多上报 20 个按键事件（受 `limits.max-key-events-per-second` 控制）。
+- 单次最多下发 64 个按键定义（受 `advanced.yml` 的 `effect-limits.max-keybind-definitions` 控制）。
+- 每名玩家每秒最多上报 20 个按键事件（受 `advanced.yml` 的 `rate-limits.max-key-events-per-second` 控制）。
 
 ## 相关
 

@@ -86,4 +86,4 @@ SoulCore 的 NeoForge 客户端可以独立提供战斗文字、怪物血条、�
 从旧版本升级时，插件会自动从旧的 `plugins/SoulCore/icons.yml`、`plugins/SoulCore/items.yml` 或旧目录 `plugins/SoulCore-Plugin/` 迁移数据：去掉旧 `icons:` / `items:` 包裹层，并把 `image`、`custom-data` 转换为 `texture`、`nbt`。旧文件不会被删除或覆盖。
 :::
 
-继续阅读：[安装详解](/guide/installation) · [统一 GUI 配置](/guide/modules/gui) · [平滑字体](/guide/modules/smooth-fonts) · [CustomQuest 任务对话](/guide/modules/quest-dialogue) · [自定义物品图片](/guide/modules/item-images)
+继续阅读：[安装详解](/guide/installation) · [统一 GUI 配置](/guide/modules/gui) · [Tooltip 增强](/guide/modules/tooltip) · [Boss 多管血条](/guide/modules/boss-health) · [实体模型](/guide/modules/entity-model) · [自定义物品图片](/guide/modules/item-images)

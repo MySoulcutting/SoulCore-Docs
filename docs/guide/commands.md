@@ -116,6 +116,14 @@
 | `soulcore.effect.clear` | 清除玩家效果 | OP |
 | `soulcore.gui` | 打开统一 GUI 配置中的 MENU | OP |
 
+## 服务端模块快捷入口
+
+- [统一 GUI](/guide/modules/gui)
+- [Tooltip 增强](/guide/modules/tooltip)
+- [Boss 多管血条](/guide/modules/boss-health)
+- [实体模型](/guide/modules/entity-model)
+- [Toast 悬浮条](/guide/modules/toast)
+
 ## 下一步
 
 - [构建与发布](/guide/building) —— 从源码构建、发布 Release

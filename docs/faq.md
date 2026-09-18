@@ -133,7 +133,7 @@ Emoji 包和字体包安装方式不同：`SoulCore-Color-Emoji-<version>.zip` �
 
 ### 任务对话、导航或追踪 HUD 没有出现？
 
-- 客户端需要 SoulCore `1.4.0` 或协议兼容版本。
+- 客户端需要当前 SoulCore NeoForge 版本或与 CustomQuest 当前通道兼容的版本。
 - CustomQuest 必须支持对应的 SoulCore 客户端通道；这三项功能不依赖 SoulCore Paper 插件。
 - 没有任务快照时追踪面板保持为空；连续约 13 秒没有心跳也会自动清空。
 - 导航目标超过 256 米且不超过 512 米时只显示光柱，超过 512 米不显示导航视觉。

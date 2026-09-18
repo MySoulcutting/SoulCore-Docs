@@ -64,9 +64,14 @@ export default defineConfig({
           items: [
             { text: '统一 GUI 配置', link: '/guide/modules/gui' },
             { text: '自定义物品图片', link: '/guide/modules/item-images' },
+            { text: '物品图层', link: '/guide/modules/item-layers' },
             { text: 'HUD 文本与图片', link: '/guide/modules/hud' },
             { text: 'Tooltip 增强', link: '/guide/modules/tooltip' },
+            { text: '怪物血条', link: '/guide/modules/monster-health' },
+            { text: 'Boss 多管血条', link: '/guide/modules/boss-health' },
+            { text: '实体模型', link: '/guide/modules/entity-model' },
             { text: '粒子效果', link: '/guide/modules/particles' },
+            { text: 'Toast 悬浮条', link: '/guide/modules/toast' },
             { text: '服务端按键', link: '/guide/modules/keybinds' },
             { text: '装备外观', link: '/guide/modules/equipment-appearance' }
           ]
