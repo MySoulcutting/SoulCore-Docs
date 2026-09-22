@@ -92,15 +92,14 @@ git push origin vX.Y.Z
 标签 `v` 后的版本必须与 `mod_version` 一致，否则发布任务会拒绝执行。`v1.5.3` 已经存在，不要照示例重建或覆盖已有标签；如需新发布，应先提升 `mod_version`。
 :::
 
-Release 自动包含：
+Release 仅包含以下两个核心运行文件：
 
 ```text
 SoulCore-NeoForge-<version>.jar
 SoulCore-Plugin-<version>.jar
-SoulCore-Protocol-<version>.jar
-SoulCore-Fonts-<version>.zip
-SoulCore-Color-Emoji-<version>.zip
 ```
+
+Protocol、字体和 Emoji 包仍会在完整构建中生成，可从构建产物中获取。
 
 ## 当前版本信息
 
