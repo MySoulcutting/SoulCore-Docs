@@ -89,7 +89,7 @@ git push origin vX.Y.Z
 ```
 
 ::: warning 版本一致性
-标签 `v` 后的版本必须与 `mod_version` 一致，否则发布任务会拒绝执行。`v1.5.2` 已经存在，不要照示例重建或覆盖已有标签；如需新发布，应先提升 `mod_version`。
+标签 `v` 后的版本必须与 `mod_version` 一致，否则发布任务会拒绝执行。`v1.5.3` 已经存在，不要照示例重建或覆盖已有标签；如需新发布，应先提升 `mod_version`。
 :::
 
 Release 自动包含：
@@ -108,7 +108,7 @@ SoulCore-Color-Emoji-<version>.zip
 
 | 属性 | 当前值 |
 |---|---|
-| `mod_version` | `1.5.2` |
+| `mod_version` | `1.5.3` |
 | `minecraft_version` | `1.21.8` |
 | `neo_version` | `21.8.54` |
 | `moddev_version` | `2.0.143` |
@@ -130,7 +130,7 @@ SoulCore-Color-Emoji-<version>.zip
 - CustomQuest 对话的鼠标/键盘操作；
 - CustomQuest 导航的光柱、圆环、标签与生命周期清理；
 - 任务追踪 HUD 的滚动、收起、布局持久化和导航按钮。
-- 统一 GUI 的 HUD/MENU、文本标题组件、按钮交互、变量表达式、生命周期事件、alpha/scale 动态属性和有限动画。
+- 统一 GUI 的 HUD/MENU、文本标题组件、按钮交互、变量表达式、生命周期事件、alpha/scale 动态属性和有限动画；自 1.5.3 版本起还需验证客户端运行时布局表达式、屏幕尺寸变量、相对纹理路径、默认层级和混合槽位 tooltip 行为。
 
 ## 下一步
 

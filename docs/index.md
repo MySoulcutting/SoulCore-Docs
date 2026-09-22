@@ -46,7 +46,7 @@ features:
     details: 通过协议通道下发 HUD 文本/图片、Tooltip、粒子、屏幕叠加、相机效果与服务端按键。
   - icon: { src: /icons/box.svg, alt: 统一 GUI }
     title: 统一 GUI
-    details: 使用单一 YAML schema 配置 HUD、菜单、组件、变量、生命周期事件、服务端动作与有限动画。
+    details: 使用单一 YAML schema 配置 HUD、菜单、组件、变量、生命周期事件、服务端动作与有限动画；自 1.5.3 版本起支持客户端运行时布局表达式、屏幕尺寸变量、相对纹理路径和更安全的混合槽位交互。
 ---
 
 ::: tip 项目构成
@@ -57,7 +57,7 @@ SoulCore 的核心产物包括 **SoulCore-NeoForge**（NeoForge 客户端 Mod）
 
 | 组件 | 版本 |
 |---|---|
-| SoulCore | `1.5.2` |
+| SoulCore | `1.5.3` |
 | Minecraft | `1.21.8` |
 | Java | `21+` |
 | NeoForge | `21.8.54+` |

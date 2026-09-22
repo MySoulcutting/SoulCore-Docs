@@ -6,7 +6,7 @@
 
 | 组件 | 版本 |
 |---|---|
-| SoulCore | `1.5.2` |
+| SoulCore | `1.5.3` |
 | Minecraft | `1.21.8` |
 | Java | `21+` |
 | NeoForge | `21.8.54+` |

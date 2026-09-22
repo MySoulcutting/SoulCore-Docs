@@ -18,10 +18,10 @@
 ### GUI 没有显示？
 
 1. 确认文件位于 `plugins/SoulCore/gui/`。
-2. 确认配置包含 `enable: true`、`id`、`type` 和 `design`。
+2. 确认配置包含 `enable: true`、`id` 和 `type`；`design` 可以省略，自 1.5.3 版本起会默认使用客户端当前 GUI 屏幕尺寸。
 3. 确认没有使用已移除的 `version`、`kind`、`theme`、`style` 或顶层 `title`。
 4. 执行 `/soulcore reload`，查看服务端日志中的 `[GUI]` 警告。
-5. MENU 使用 `/soulcore gui <玩家> <GUI ID>` 打开；HUD 会在客户端握手后自动显示。
+5. MENU/INVENTORY 使用 `/soulcore gui <玩家> <GUI ID>` 打开；HUD 会在客户端握手后自动显示。
 
 ### PlaceholderAPI 变量没有生效？
 
@@ -35,15 +35,23 @@ Paper 只发送资源 ID，不发送图片本体。图片必须放在客户端�
 .minecraft/resourcepacks/soulcore/
 ```
 
-检查 `texture` 是否为合法 namespaced resource ID，并执行 `/soulcore-client reload` 重载本地资源。
+自 1.5.3 版本起，`texture` 可以写 `gui/pet.png` 等相对路径，对应 `.minecraft/resourcepacks/soulcore/gui/pet.png`；旧的 `soulcore:textures/...` namespaced resource ID 仍兼容。修改后执行 `/soulcore-client reload` 重载本地资源。
 
 ### 按钮没有反应？
 
-按钮只能放在 `type: menu` 的 GUI 中。HUD 禁止按钮；客户端还需要协商 `GUI_INTERACTIONS` 能力。服务端会校验 session、view、sequence、按钮 ID、权限和每玩家限流。
+按钮只能放在 `type: menu` 或 `type: inventory` 的 GUI 中。HUD 禁止按钮；客户端还需要协商 `GUI_INTERACTIONS` 能力。服务端会校验 session、view、sequence、按钮 ID、权限和每玩家限流。
+
+### 手持物品时为什么没有槽位 tooltip？
+
+这是自 1.5.3 版本起的混合背包保护行为：鼠标手持物品时不显示任何槽位 tooltip，特殊槽位物品也不会覆盖当前手持物品；多个槽位重叠时按 `layer` 处理 tooltip 命中。
+
+### 客户端运行时表达式如何使用？
+
+自 1.5.3 版本起，数值属性可以直接写表达式，不需要 `=` 前缀。可用 `w`、`h`、`screen_width`、`screen_height`、`gui_scale`、`current_time`，也可以引用组件属性，例如 `background.width`。窗口尺寸变化时客户端会重新计算布局；未协商运行时能力的客户端使用服务端静态值。
 
 ### 旧 GUI 配置为什么不加载？
 
-1.5.2 只支持统一 schema。请删除 `version`、`kind`、`theme`、`style` 和顶层 `title`；标题改成 `components` 下的 `text` 组件。
+1.5.3 只支持统一 schema。请删除 `version`、`kind`、`theme`、`style` 和顶层 `title`；标题改成 `components` 下的 `text` 组件。
 
 ## 物品图片相关
 
@@ -167,7 +175,7 @@ Emoji 包和字体包安装方式不同：`SoulCore-Color-Emoji-<version>.zip` �
 
 ### 发布 Release 失败？
 
-- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致。把下面的 `X.Y.Z` 替换为尚未发布的版本；不要重建已经存在的 `v1.5.2`：
+- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致。把下面的 `X.Y.Z` 替换为尚未发布的版本；不要重建已经存在的 `v1.5.3`：
 
 ```bash
 git tag vX.Y.Z
