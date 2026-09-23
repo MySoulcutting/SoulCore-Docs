@@ -63,6 +63,7 @@ export default defineConfig({
           text: '服务端模块',
           items: [
             { text: '统一 GUI 配置', link: '/guide/modules/gui' },
+            { text: '背包槽位', link: '/guide/modules/slots' },
             { text: '自定义物品图片', link: '/guide/modules/item-images' },
             { text: '物品图层', link: '/guide/modules/item-layers' },
             { text: 'HUD 文本与图片', link: '/guide/modules/hud' },

@@ -43,7 +43,27 @@ Paper 只发送资源 ID，不发送图片本体。图片必须放在客户端�
 
 ### 手持物品时为什么没有槽位 tooltip？
 
-这是自 1.5.3 版本起的混合背包保护行为：鼠标手持物品时不显示任何槽位 tooltip，特殊槽位物品也不会覆盖当前手持物品；多个槽位重叠时按 `layer` 处理 tooltip 命中。
+这是自 1.5.3 版本起的混合背包保护行为：鼠标手持物品时不显示任何槽位 tooltip，特殊槽位物品也不会覆盖当前手持物品；多个槽位重叠时按 `layer` 处理 tooltip 命中。混合背包中的原版槽位 tooltip 自 1.5.3-fix-2 起改由原版容器界面渲染，与原版行为一致。
+
+### 背包界面打不开或槽位是空的？
+
+1. 确认 `config.yml` 中 `features.gui: true`。
+2. 确认 `plugins/SoulCore/database.yml` 配置的存储已就绪；数据库不可用时玩家登录会被拒绝。
+3. 确认客户端协商了 `SLOTS` 能力（`/soulcore capabilities <玩家>`）。
+4. 用 `/soulcore inventory <玩家>` 打开；玩家对自己执行不需要权限。
+5. 查看服务端日志中 `gui/inventory.yml` 与 `modules/slots.yml` 的校验警告。
+
+### 旧的 inventory.yml 还有用吗？
+
+没有。自 1.5.3-fix-2 起插件不再生成或读取根目录 `plugins/SoulCore/inventory.yml`，其中的 `enable`、`title`、`rows`、`buttons`、`examples`、`slot-reject-message` 全部失效。界面改到 `gui/inventory.yml`，规则与提示改到 `modules/slots.yml`，对照表见[背包槽位](/guide/modules/slots#更新记录)。
+
+### 槽位规则被跳过并提示 unsupported key？
+
+`modules/slots.yml` 的白名单字段在 1.5.3-fix-2 改名：`materials` → `material`、`names` → `name`、`lores` → `lore`、`custom-model-data` → `nbt`。旧字段不会被静默兼容，插件会记录 `contains unsupported key ...` 并跳过整条规则。同步删除槽位下的数字 `inventory-slot` 字段。
+
+### 文本里的十六进制颜色怎么写？
+
+统一 GUI 的文本组件支持 `§x§R§R§G§G§B§B` 形式，例如 `§x§2§D§D§4§B§F文字`。`§x` 后必须紧跟 6 组 `§` 加十六进制字符；解析失败时按普通文本显示。`&` 前缀仍然只支持原版颜色与格式码。
 
 ### 客户端运行时表达式如何使用？
 
@@ -175,7 +195,7 @@ Emoji 包和字体包安装方式不同：`SoulCore-Color-Emoji-<version>.zip` �
 
 ### 发布 Release 失败？
 
-- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致。把下面的 `X.Y.Z` 替换为尚未发布的版本；不要重建已经存在的 `v1.5.3`：
+- 推送的标签必须是 `v*` 格式，且版本号与 `gradle.properties` 中的 `mod_version` 完全一致。把下面的 `X.Y.Z` 替换为尚未发布的版本；不要重建已经存在的 `v1.5.3`。当前 `mod_version` 为 `1.5.3-fix-2`：
 
 ```bash
 git tag vX.Y.Z

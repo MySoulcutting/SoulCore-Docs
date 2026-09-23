@@ -32,13 +32,28 @@
 
 ### /soulcore gui
 
-打开统一 GUI 配置中的 `menu`。
+打开统一 GUI 配置中的 `menu` 或 `inventory`。
 
 ```text
 /soulcore gui <玩家> <GUI ID>
 ```
 
 权限：`soulcore.gui`（默认 OP）。HUD 不能通过此命令打开；GUI ID 使用配置中的 `id`。
+
+### /soulcore inventory
+
+打开服务端权威背包（`gui/inventory.yml` 中 `id` 为 `soulcore:inventory` 的界面）。
+
+```text
+/soulcore inventory <玩家>
+```
+
+| 项目 | 值 |
+|---|---|
+| 权限 | `soulcore.inventory` |
+| 默认 | OP |
+
+玩家对自己的 ID 执行该命令不需要权限；为其他玩家打开时必须持有 `soulcore.inventory`。背包是否可用还取决于 `database.yml` 配置的存储是否就绪。详见[背包槽位](/guide/modules/slots)。
 
 ### /soulcore capabilities
 
@@ -65,6 +80,21 @@
 |---|---|
 | 权限 | `soulcore.effect.clear` |
 | 默认 | OP |
+
+### /soulcore cache clear
+
+使指定玩家的物品材料缓存失效，并重新下发完整规则。
+
+```text
+/soulcore cache clear <玩家>
+```
+
+| 项目 | 值 |
+|---|---|
+| 权限 | `soulcore.cache.clear` |
+| 默认 | OP |
+
+目标玩家必须保持 SoulCore 客户端会话有效，否则命令会提示会话无效。
 
 ## 客户端命令
 
@@ -114,11 +144,15 @@
 | `soulcore.hud` | 手动发送 HUD 条目 | OP |
 | `soulcore.capabilities` | 查看玩家能力协商结果 | OP |
 | `soulcore.effect.clear` | 清除玩家效果 | OP |
-| `soulcore.gui` | 打开统一 GUI 配置中的 MENU | OP |
+| `soulcore.cache.clear` | 清除玩家材料缓存并重新下发规则 | OP |
+| `soulcore.gui` | 打开统一 GUI 配置中的 MENU 或 INVENTORY | OP |
+| `soulcore.inventory` | 为其他玩家打开服务端权威背包 | OP |
+| `soulcore.slot.clone` | 中键克隆服务端槽位中的物品 | OP |
 
 ## 服务端模块快捷入口
 
 - [统一 GUI](/guide/modules/gui)
+- [背包槽位](/guide/modules/slots)
 - [Tooltip 增强](/guide/modules/tooltip)
 - [Boss 多管血条](/guide/modules/boss-health)
 - [实体模型](/guide/modules/entity-model)

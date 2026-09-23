@@ -39,6 +39,7 @@ SoulCore 的 NeoForge 客户端可以独立提供战斗文字、怪物血条、�
    ```
    plugins/SoulCore/config.yml
    plugins/SoulCore/advanced.yml
+   plugins/SoulCore/database.yml
    plugins/SoulCore/modules/font.yml
    plugins/SoulCore/modules/icons.yml
    plugins/SoulCore/modules/item_layers.yml
@@ -51,8 +52,11 @@ SoulCore 的 NeoForge 客户端可以独立提供战斗文字、怪物血条、�
    plugins/SoulCore/modules/keybinds.yml
    plugins/SoulCore/modules/armor.yml
    plugins/SoulCore/modules/toast.yml
+   plugins/SoulCore/modules/slots.yml
+   plugins/SoulCore/gui/example.yml
+   plugins/SoulCore/gui/inventory.yml
    ```
-3. 如需自定义 HUD 或菜单，编辑 `plugins/SoulCore/gui/example.yml`，将 `enable` 改为 `true`；其他配置完成后统一执行 `/soulcore reload`。
+3. 如需自定义 HUD 或菜单，编辑 `plugins/SoulCore/gui/example.yml`，将 `enable` 改为 `true`；背包界面与槽位规则用 `/soulcore inventory <玩家>` 查看，详见[背包槽位](/guide/modules/slots)；其他配置完成后统一执行 `/soulcore reload`。
 
 ## 4. 可选安装 CustomQuest
 

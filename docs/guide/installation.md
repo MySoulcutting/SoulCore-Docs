@@ -6,7 +6,7 @@
 
 | 组件 | 版本 |
 |---|---|
-| SoulCore | `1.5.3` |
+| SoulCore | `1.5.3-fix-2` |
 | Minecraft | `1.21.8` |
 | Java | `21+` |
 | NeoForge | `21.8.54+` |
@@ -74,20 +74,27 @@ SoulCore 已内嵌专用的 ModernUI Text Port，并明确与完整 ModernUI-MC�
 ```text
 plugins/SoulCore/config.yml                     # 服务端总配置
 plugins/SoulCore/advanced.yml                   # 性能、安全上限与限流
+plugins/SoulCore/database.yml                   # 背包槽位数据存储（SQLite / MySQL）
+plugins/SoulCore/mcp.yml                        # 本机 MCP 管理桥，默认关闭
 plugins/SoulCore/modules/font.yml               # 字符替换图标；平滑字体由客户端设置
 plugins/SoulCore/modules/icons.yml              # 自定义物品图片匹配规则
 plugins/SoulCore/modules/mob_health.yml         # 怪物血条完整名称白名单
+plugins/SoulCore/modules/boss_health.yml        # Boss 多管血条
 plugins/SoulCore/modules/hud.yml                # 进服自动下发的 HUD 文本与图片
 plugins/SoulCore/modules/tooltip.yml            # 物品 Tooltip 文本增强
 plugins/SoulCore/modules/particles.yml          # 进服自动触发的粒子效果
 plugins/SoulCore/modules/keybinds.yml           # 服务端按键定义
 plugins/SoulCore/modules/armor.yml              # 装备外观规则
-plugins/SoulCore/modules/entity_model.yml        # 实体模型规则
-plugins/SoulCore/modules/boss_health.yml         # Boss 多管血条
-plugins/SoulCore/modules/toast.yml               # Toast 规则
-plugins/SoulCore/modules/item_layers.yml         # 物品图层规则
-plugins/SoulCore/gui/example.yml                 # 统一 GUI 示例
+plugins/SoulCore/modules/entity_model.yml       # 实体模型规则
+plugins/SoulCore/modules/toast.yml              # Toast 规则
+plugins/SoulCore/modules/item_layers.yml        # 物品图层规则
+plugins/SoulCore/modules/slots.yml              # 背包槽位规则与物品白名单
+plugins/SoulCore/gui/example.yml                # 统一 GUI 示例
+plugins/SoulCore/gui/example-client-runtime.yml # 客户端运行时表达式示例
+plugins/SoulCore/gui/inventory.yml              # 统一背包界面
 ```
+
+根目录的 `plugins/SoulCore/inventory.yml` 自 1.5.3-fix-2 起不再生成，插件也不会读取它；已有服务器的该文件可以删除，其中的布局配置需要迁移到 `gui/inventory.yml`，详见[背包槽位](/guide/modules/slots)。
 
 ### 3. 重载配置
 
@@ -127,6 +134,10 @@ GUI 配置位于 `plugins/SoulCore/gui/`，当前只支持统一 schema。默认
 
 旧文件不会被删除或覆盖。
 
+自 1.5.3-fix-2 起，背包槽位不再使用根目录 `plugins/SoulCore/inventory.yml`，插件既不生成也不读取该文件。升级时旧文件会保留但完全失效，其中的 `enable`、`title`、`rows`、`buttons`、`examples`、`slot-reject-message` 都不会生效；界面部分需要改写为 `gui/inventory.yml`，规则和提示改成 `modules/slots.yml` 的新字段，迁移对照见[背包槽位](/guide/modules/slots#更新记录)。
+
+`modules/slots.yml` 的白名单字段同时改名（`materials` → `material`、`names` → `name`、`lores` → `lore`、`custom-model-data` → `nbt`），插件遇到旧字段会直接跳过整条规则并记录警告。
+
 ## 目录速查
 
 | 路径 | 用途 |
@@ -136,8 +147,9 @@ GUI 配置位于 `plugins/SoulCore/gui/`，当前只支持统一 schema。默认
 | 客户端 `config/soulcore/` | 战斗、怪物血条、拾取 HUD、任务追踪 HUD 与字体设置 |
 | 客户端 `resourcepacks/SoulCore-Color-Emoji-*.zip` | 可选彩色 Emoji 资源包，需要在资源包界面启用 |
 | 服务端 `plugins/SoulCore/config.yml` | 服务端总开关与限制 |
-| 服务端 `plugins/SoulCore/modules/` | 各功能的具体规则文件 |
-| 服务端 `plugins/SoulCore/gui/` | 统一 GUI 的 HUD 与 MENU 配置 |
+| 服务端 `plugins/SoulCore/database.yml` | 背包槽位数据存储（SQLite / MySQL） |
+| 服务端 `plugins/SoulCore/modules/` | 各功能的具体规则文件，包含 `slots.yml` |
+| 服务端 `plugins/SoulCore/gui/` | 统一 GUI 的 HUD、MENU 与背包界面配置 |
 
 ::: tip 本地资源目录说明
 `resourcepacks/soulcore/` 是 SoulCore 读取的普通文件目录：

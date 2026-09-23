@@ -10,6 +10,10 @@ SoulCore 1.5.3 的 GUI 使用一套统一配置协议。它参考 DragonCore 的
 自 1.5.3 版本起支持客户端运行时布局表达式、屏幕尺寸变量、组件属性引用、相对纹理路径、按组件类型推导默认 `layer`，以及原版/特殊槽位的混合交互保护。
 :::
 
+::: tip 更新至 1.5.3-fix-2 版本
+背包界面改为统一 GUI 架构：`gui/inventory.yml` 负责界面，`modules/slots.yml` 负责槽位规则，两边用 `slot-id` 关联；根目录的 `inventory.yml` 不再被读取。GUI 文本组件同时支持 `§x` 十六进制颜色码。详见[背包槽位](/guide/modules/slots)。
+:::
+
 配置目录：
 
 ```text
@@ -66,6 +70,8 @@ type: inventory
 ```
 
 `inventory` 只允许由服务端打开，客户端会启用混合背包交互和鼠标手持物品渲染。
+
+背包界面同时依赖 `modules/slots.yml`：`gui/inventory.yml` 里的每个 `slot` 组件通过 `slot-id` 关联该文件中的同名规则，界面只负责位置和尺寸，物品限制、只读状态和拒绝提示都由槽位规则决定。字段、必填槽位和迁移方式见[背包槽位](/guide/modules/slots)。
 
 如果配置中出现旧字段，SoulCore 会记录字段路径并跳过该 GUI，不会静默按旧语义加载。
 
@@ -365,6 +371,14 @@ center
 right
 ```
 
+`text` 里的 `&` 颜色与格式码按原版规则解析，并保留显式换行。需要精确颜色时可以直接写十六进制颜色码：
+
+```yaml
+text: "§x§2§D§D§4§B§F自定义颜色"
+```
+
+`§x` 后必须紧跟 6 组 `§` + 十六进制字符，依次表示 RRGGBB；解析失败时按普通文本显示。组件级 `color` 只作为没有内嵌颜色码时的默认颜色。
+
 ### texture / image
 
 自 1.5.3 版本起，纹理可以直接写资源包中的相对路径：
@@ -478,7 +492,32 @@ name_input:
 
 ### slot
 
-自 1.5.3 版本起，`slot` 支持与原版背包槽位和特殊槽位混合显示。槽位交互按组件层级命中 tooltip，并遵循以下保护规则：
+自 1.5.3 版本起，`slot` 支持与原版背包槽位和特殊槽位混合显示：
+
+```yaml
+head:
+  type: slot
+  x: 52
+  y: 120
+  width: 24
+  height: 24
+  layer: 3
+  slot-id: head
+  click: true
+```
+
+| 字段 | 默认值 | 说明 |
+|---|---|---|
+| `slot-id` | 必填 | 关联 `modules/slots.yml` 的规则 ID，也是玩家背包槽位的内置 ID |
+| `click` | `true` | 是否允许点击交互 |
+| `read-only` | `false` | 只读时客户端不能取出或替换其中的物品 |
+| `item-id` / `item-count` / `display-name` / `lore` / `custom-model-data` | 取自槽位状态 | 可作为没有服务端槽位数据时的静态回退值 |
+
+- `type: inventory` 中必须包含 15 个必填特殊槽位；缺少时 GUI 仍会加载，但服务端会记录 `[背包] inventory rule mismatch` 并拒绝打开。
+- 玩家背包和快捷栏槽位使用内置 ID，不需要在 `modules/slots.yml` 中声明规则，也不占用数据库。
+- 详细的槽位规则、必填 ID 清单和旧字段迁移见[背包槽位](/guide/modules/slots)。
+
+槽位交互按组件层级命中 tooltip，并遵循以下保护规则：
 
 - 鼠标手持物品时，不显示任何槽位 tooltip。
 - 特殊槽位中的物品不会覆盖鼠标当前手持物品。
@@ -634,6 +673,12 @@ GUI reload 失败时保留上一份有效配置；单个文件无效时跳过该
 
 ## 更新记录
 
+### 更新至 1.5.3-fix-2 版本
+
+- 背包界面统一到 GUI 架构：`type: inventory` 的布局、标题和组件全部写在 `gui/inventory.yml`；根目录的 `inventory.yml` 不再被读取，其中的 `enable`、`title`、`rows`、`buttons`、`examples` 全部失效。
+- `slot` 组件通过 `slot-id` 与 `modules/slots.yml` 的规则关联，不再使用数字 `inventory-slot` 映射；槽位拒绝提示改由 `slots.yml` 的 `slot-reject-message` 配置。
+- 文本组件新增 `§x` 十六进制颜色码解析，可精确控制单个文本片段的颜色。
+
 ### 更新至 1.5.3 版本
 
 - 新增客户端运行时布局表达式：支持屏幕尺寸变量、组件属性引用，并在窗口尺寸变化时重新计算布局。
@@ -674,6 +719,7 @@ title
 
 ## 相关页面
 
+- [背包槽位](/guide/modules/slots) —— `gui/inventory.yml` 与 `modules/slots.yml` 的规则
 - [安装](/guide/installation)
 - [命令与权限](/guide/commands)
 - [常见问题](/faq)

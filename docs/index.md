@@ -46,7 +46,7 @@ features:
     details: 通过协议通道下发 HUD 文本/图片、Tooltip、粒子、屏幕叠加、相机效果与服务端按键。
   - icon: { src: /icons/box.svg, alt: 统一 GUI }
     title: 统一 GUI
-    details: 使用单一 YAML schema 配置 HUD、菜单、组件、变量、生命周期事件、服务端动作与有限动画；自 1.5.3 版本起支持客户端运行时布局表达式、屏幕尺寸变量、相对纹理路径和更安全的混合槽位交互。
+    details: 使用单一 YAML schema 配置 HUD、菜单、背包界面、组件、变量、生命周期事件、服务端动作与有限动画；自 1.5.3 版本起支持客户端运行时布局表达式、屏幕尺寸变量和相对纹理路径，1.5.3-fix-2 起背包槽位统一由 gui/inventory.yml 与 modules/slots.yml 描述，slot-id 作为唯一关联键。
 ---
 
 ::: tip 项目构成
@@ -57,7 +57,7 @@ SoulCore 的核心产物包括 **SoulCore-NeoForge**（NeoForge 客户端 Mod）
 
 | 组件 | 版本 |
 |---|---|
-| SoulCore | `1.5.3` |
+| SoulCore | `1.5.3-fix-2` |
 | Minecraft | `1.21.8` |
 | Java | `21+` |
 | NeoForge | `21.8.54+` |
@@ -73,5 +73,5 @@ SoulCore 的核心产物包括 **SoulCore-NeoForge**（NeoForge 客户端 Mod）
 - [自定义 GUI](/guide/modules/gui) —— HUD、菜单、组件、变量和动画
 - [自定义物品图片](/guide/modules/item-images) —— 最常用的进阶玩法
 - [客户端模块](/guide/modules/settings) —— 战斗文字、怪物血条、拾取提示、字体与总控设置
-- [服务端模块](/guide/modules/gui) —— 统一 GUI、物品图片、物品图层、HUD、Tooltip、怪物/Boss 血条、实体模型、Toast、粒子、按键与装备外观
+- [服务端模块](/guide/modules/gui) —— 统一 GUI、背包槽位、物品图片、物品图层、HUD、Tooltip、怪物/Boss 血条、实体模型、Toast、粒子、按键与装备外观
 - [命令与权限](/guide/commands) —— 完整命令参考
