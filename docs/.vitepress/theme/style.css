@@ -186,31 +186,76 @@
   border-right: 1px solid var(--vp-c-divider);
 }
 
+/* 分组之间用发丝线分隔，长列表也能快速定位 */
+.VPSidebar .group + .group {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--vp-c-divider) 65%, transparent);
+}
+
+.VPSidebarItem.level-0 > .item {
+  padding: 0 0 0.3rem;
+  border-radius: 0;
+}
+
 .VPSidebarItem.level-0 > .item > .text {
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--vp-c-text-3);
   font-weight: 700;
 }
 
-.VPSidebarItem.level-1 .item .text {
+/* 当前页所属分组：标题跟随品牌色，便于判断位置 */
+.VPSidebarItem.level-0.has-active > .item > .text {
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebarItem.level-1 > .item {
+  position: relative;
+  margin: 0.12rem 0;
+  padding: 0.42rem 0.7rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.VPSidebarItem.level-1 > .item .text {
+  font-size: 14px;
   font-weight: 500;
+  line-height: 1.35;
+  color: var(--vp-c-text-2);
   transition: color 0.2s ease;
 }
 
-.VPSidebarItem.level-1 .item:hover .text {
-  color: var(--vp-c-brand-1);
+.VPSidebarItem.level-1 > .item:hover {
+  background: color-mix(in srgb, var(--vp-c-brand-1) 7%, transparent);
+}
+
+.VPSidebarItem.level-1 > .item:hover .text {
+  color: var(--vp-c-text-1);
+}
+
+/* 当前页：柔和底色 + 左侧色条，位置对齐不依赖文字位移 */
+.VPSidebarItem.level-1.is-active > .item {
+  background: var(--vp-c-brand-soft);
+}
+
+.VPSidebarItem.level-1.is-active > .item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 60%;
+  min-height: 16px;
+  transform: translateY(-50%);
+  border-radius: 0 3px 3px 0;
+  background: var(--vp-c-brand-1);
 }
 
 .VPSidebarItem.level-1.is-active > .item .text {
   color: var(--vp-c-brand-1);
   font-weight: 600;
-}
-
-.VPSidebarItem.level-1.is-active > .item {
-  background: var(--vp-c-brand-soft);
-  border-radius: 8px;
 }
 
 /* =====================================================================
@@ -506,30 +551,68 @@ button {
   overflow-wrap: anywhere;
 }
 
-.VPSidebarItem.level-0 > .item {
-  margin: 0.35rem 0;
-  padding: 0.45rem 0.7rem;
-  border-radius: 9px;
-}
-
-.VPSidebarItem.level-0.is-active > .item,
-.VPSidebarItem.level-0:hover > .item {
-  background: color-mix(in srgb, var(--vp-c-brand-1) 7%, transparent);
-}
-
+/* =====================================================================
+ * 本页目录（右侧 outline）
+ * ===================================================================== */
 .VPDocAside {
-  padding-left: 24px;
+  padding-left: 20px;
+}
+
+.VPDocAsideOutline .content {
+  border-left: 1px solid var(--vp-c-divider);
+  padding-left: 14px;
+}
+
+/* 目录标题与左侧分组标题保持同一套小标签风格 */
+.VPDocAsideOutline .outline-title {
+  margin-bottom: 0.6rem;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
 }
 
 .VPDocAsideOutline .outline-link {
+  display: block;
+  padding: 0.22rem 0;
+  font-size: 13px;
+  font-weight: 500;
   line-height: 1.45;
-  transition: color 0.2s ease, transform 0.2s ease;
+  color: var(--vp-c-text-2);
+  transition: color 0.2s ease;
 }
 
-.VPDocAsideOutline .outline-link:hover,
+.VPDocAsideOutline .outline-link:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* 当前小节：加粗 + 品牌色，靠轨道指示条定位，不做横向位移 */
 .VPDocAsideOutline .outline-link.active {
   color: var(--vp-c-brand-1);
-  transform: translateX(2px);
+  font-weight: 600;
+}
+
+/* h3 层级：缩进 + 更小字号 + 更浅颜色，形成二级层次。
+   作用域限定在右侧栏，避免影响移动端下拉目录（其整棵树都带 nested）。 */
+.VPDocAsideOutline .VPDocOutlineItem.nested .outline-link {
+  padding: 0.16rem 0;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--vp-c-text-3);
+}
+
+.VPDocAsideOutline .VPDocOutlineItem.nested .outline-link.active {
+  font-weight: 600;
+}
+
+/* 轨道上滑动的指示条：加宽并覆盖分隔线 */
+.VPDocAsideOutline .outline-marker {
+  z-index: 1;
+  left: -2px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--vp-c-brand-1);
 }
 
 @media (max-width: 960px) {
