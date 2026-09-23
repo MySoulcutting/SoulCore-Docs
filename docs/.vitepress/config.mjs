@@ -34,6 +34,7 @@ export default defineConfig({
       '/guide/': [
         {
           text: '入门',
+          collapsed: true,
           items: [
             { text: '快速开始', link: '/guide/getting-started' },
             { text: '安装', link: '/guide/installation' },
@@ -43,6 +44,7 @@ export default defineConfig({
         },
         {
           text: '客户端模块',
+          collapsed: true,
           items: [
             { text: '总控设置', link: '/guide/modules/settings' },
             { text: '平滑字体与字符图标', link: '/guide/modules/smooth-fonts' },
@@ -53,6 +55,7 @@ export default defineConfig({
         },
         {
           text: 'CustomQuest 集成',
+          collapsed: true,
           items: [
             { text: '任务对话', link: '/guide/modules/quest-dialogue' },
             { text: '任务导航', link: '/guide/modules/quest-navigation' },
@@ -61,6 +64,7 @@ export default defineConfig({
         },
         {
           text: '服务端模块',
+          collapsed: true,
           items: [
             { text: '统一 GUI 配置', link: '/guide/modules/gui' },
             { text: '背包槽位', link: '/guide/modules/slots' },
